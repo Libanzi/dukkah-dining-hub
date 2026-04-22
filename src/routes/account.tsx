@@ -328,7 +328,7 @@ function Field({
   return (
     <div className="relative">
       {Icon && (
-        <Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+        <Icon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
       )}
       <input
         type={type}
@@ -337,7 +337,7 @@ function Field({
         placeholder={placeholder}
         required={required}
         minLength={minLength}
-        className={`w-full rounded-lg border border-white/15 bg-white/[0.04] py-2.5 text-sm text-white placeholder-white/40 outline-none transition focus:border-[hsl(45,65%,55%)] focus:bg-white/[0.08] ${Icon ? "pl-10 pr-3" : "px-3"}`}
+        className={`w-full rounded-lg border border-border bg-bg-primary py-2.5 text-sm text-text-primary placeholder:text-text-muted outline-none transition focus:border-gold focus:bg-bg-secondary ${Icon ? "pl-10 pr-3" : "px-3"}`}
       />
     </div>
   );
