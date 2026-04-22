@@ -1,14 +1,13 @@
 import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
+import { DukkahLogo } from "./DukkahLogo";
 
 export function Footer() {
   return (
     <footer id="footer" className="bg-bg-tertiary border-t border-border pt-16 pb-6 px-5">
       <div className="mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
         <div className="col-span-2 md:col-span-1">
-          <div className="flex items-center gap-1 mb-3">
-            <span className="font-serif text-2xl font-semibold text-gold">DUKK</span>
-            <span className="inline-block h-2 w-2 rotate-45 bg-terracotta" />
-            <span className="font-serif text-2xl font-semibold text-gold">AH</span>
+          <div className="mb-3">
+            <DukkahLogo height={40} className="text-gold" showTagline={true} />
           </div>
           <p className="text-sm text-text-muted mb-4">African Fine Dining — Florida Road, Durban</p>
           <div className="flex gap-3 mb-3">

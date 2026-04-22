@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    img: "/photos/exterior-1.webp",
+    img: "/photos/hero-exterior.jpg",
     eyebrow: "Since 2006",
     heading: "Where Africa Comes to the Table",
     sub: "Fine dining on Florida Road, Durban",
@@ -11,7 +11,7 @@ const slides = [
     secondary: { label: "View Our Menu", href: "#menu" },
   },
   {
-    img: "/photos/bar-1.webp",
+    img: "/photos/hero-bar.jpg",
     eyebrow: "The Bar",
     heading: "Crafted for the South African Palate",
     sub: "80+ spirits and signature African-inspired cocktails",
@@ -19,7 +19,7 @@ const slides = [
     secondary: { label: "Visit Tonight", href: "#reservations" },
   },
   {
-    img: "/photos/food-1.webp",
+    img: "/photos/hero-food.jpg",
     eyebrow: "À La Carte",
     heading: "Food as Heritage",
     sub: "African ingredients, global technique",
@@ -27,7 +27,7 @@ const slides = [
     secondary: { label: "Reserve a Table", href: "#reservations" },
   },
   {
-    img: "/photos/interior-1.webp",
+    img: "/photos/hero-interior.jpg",
     eyebrow: "The Room",
     heading: "Warmth, Art & African Hospitality",
     sub: "Dine inside our intimate, candlelit space on Florida Road",
@@ -35,10 +35,10 @@ const slides = [
     secondary: { label: "Inside Dukkah", href: "#gallery" },
   },
   {
-    img: "/photos/brunch-6.webp",
-    eyebrow: "Sushi & Brunch",
+    img: "/photos/hero-brunch.jpg",
+    eyebrow: "Sunday Sessions",
     heading: "Sunday Brunch Jazz",
-    sub: "Sushi, bottomless mimosas and live music every Sunday",
+    sub: "Bottomless mimosas and live music every Sunday",
     primary: { label: "See Brunch Menu", href: "#menu" },
     secondary: { label: "Reserve Sunday", href: "#reservations" },
   },
@@ -76,7 +76,8 @@ export function HeroCarousel() {
             className="absolute inset-0 h-full w-full object-cover"
             loading={i === 0 ? "eager" : "lazy"}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/30 dark:from-black/90 dark:via-black/60 dark:to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/55" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(0,0,0,0.6)_0%,_transparent_60%)]" />
           <div className="relative z-10 flex h-full items-center px-6 md:px-16">
             <div className="max-w-3xl text-white animate-fade-up">
               <p className="eyebrow !text-gold mb-4">{s.eyebrow}</p>
