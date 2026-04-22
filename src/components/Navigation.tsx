@@ -34,14 +34,11 @@ export function Navigation() {
       style={{ backgroundColor: "var(--nav-bg)" }}
     >
       <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:h-[72px]">
-        <Link to="/" className="flex items-center gap-1">
-          <span className="font-serif text-2xl font-semibold text-gold tracking-wide">
-            DUKK
+        <Link to="/" className="flex items-center gap-2" aria-label="Dukkah Restaurant & Bar — Home">
+          <span className="font-serif text-2xl font-semibold text-gold tracking-[0.18em]">
+            DUKKAH
           </span>
-          <span className="inline-block h-2 w-2 rotate-45 bg-terracotta" />
-          <span className="font-serif text-2xl font-semibold text-gold tracking-wide">
-            AH
-          </span>
+          <span className="hidden sm:inline-block h-1.5 w-1.5 rounded-full bg-terracotta" />
         </Link>
 
         <ul className="hidden lg:flex items-center gap-7">
