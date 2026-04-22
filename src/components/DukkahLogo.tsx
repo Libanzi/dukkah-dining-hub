@@ -37,8 +37,8 @@ export function DukkahLogo({
     >
       {/* ===== Wordmark: D U K K A H, baseline ~ y=90, cap height ~ 70 ===== */}
       {/* Letters drawn as thin geometric strokes — stroke width 5 */}
-      <g stroke={color} strokeWidth="5" fill="none" strokeLinecap="square">
-        {/* D — left vertical + arched right side (approx with two diagonals + vertical) */}
+      <g stroke={color} strokeWidth="5" fill="none" strokeLinecap="square" strokeLinejoin="miter">
+        {/* D — left vertical + arched right side */}
         <path d="M 20 20 L 20 90" />
         <path d="M 20 20 L 50 20 Q 75 55 50 90 L 20 90" />
 
@@ -49,13 +49,11 @@ export function DukkahLogo({
         {/* Central tall spine */}
         <path d="M 175 8 L 175 100" />
 
-        {/* Left K — diagonals open to the LEFT, meeting the spine at mid-height */}
-        <path d="M 175 55 L 145 20" />
-        <path d="M 175 55 L 145 90" />
+        {/* Left K — both diagonals as one continuous path touching the spine */}
+        <path d="M 145 20 L 175 55 L 145 90" />
 
-        {/* Right K — diagonals open to the RIGHT */}
-        <path d="M 175 55 L 205 20" />
-        <path d="M 175 55 L 205 90" />
+        {/* Right K — both diagonals as one continuous path touching the spine */}
+        <path d="M 205 20 L 175 55 L 205 90" />
 
         {/* A — two diagonals + crossbar */}
         <path d="M 235 90 L 260 20 L 285 90" />
