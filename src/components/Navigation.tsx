@@ -6,9 +6,8 @@ import { CartButton } from "./cart/CartDrawer";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "Menu", href: "#menu" },
+  { label: "Menu", href: "#order" },
   { label: "Reservations", href: "#reservations" },
-  { label: "Order Online", href: "#order" },
   { label: "Events", href: "#events" },
   { label: "Gallery", href: "#gallery" },
   { label: "About", href: "#about" },
