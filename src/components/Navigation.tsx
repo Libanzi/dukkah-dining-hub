@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { CartButton } from "./cart/CartDrawer";
 
@@ -59,6 +59,13 @@ export function Navigation() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
+          <Link
+            to="/account"
+            className="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-text-secondary hover:border-gold hover:text-gold"
+            aria-label="My account"
+          >
+            <User className="h-4 w-4" />
+          </Link>
           <CartButton />
           <a
             href="#reservations"
