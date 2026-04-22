@@ -29,19 +29,29 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Dukkah Restaurant & Bar | African Fine Dining, Florida Road Durban" },
+      {
+        name: "description",
+        content:
+          "Book a table at Dukkah, Durban's premier African fine dining experience on Florida Road. Reserve online, order food for delivery, and explore our cocktail bar and live events.",
+      },
+      { name: "author", content: "Dukkah Restaurant & Bar" },
+      { property: "og:title", content: "Dukkah Restaurant & Bar | African Fine Dining, Durban" },
+      {
+        property: "og:description",
+        content:
+          "Florida Road's premier African fine dining since 2006. Reserve a table, order online, host private events.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap",
       },
     ],
   }),
