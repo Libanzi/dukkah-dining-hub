@@ -130,6 +130,7 @@ export type Database = {
       }
       orders: {
         Row: {
+          admin_notes: string | null
           created_at: string
           customer_email: string
           customer_name: string
@@ -143,10 +144,12 @@ export type Database = {
           payment_status: string
           special_instructions: string | null
           status: string
+          status_updated_at: string
           subtotal: number
           total: number
         }
         Insert: {
+          admin_notes?: string | null
           created_at?: string
           customer_email: string
           customer_name: string
@@ -160,10 +163,12 @@ export type Database = {
           payment_status?: string
           special_instructions?: string | null
           status?: string
+          status_updated_at?: string
           subtotal?: number
           total?: number
         }
         Update: {
+          admin_notes?: string | null
           created_at?: string
           customer_email?: string
           customer_name?: string
@@ -177,6 +182,7 @@ export type Database = {
           payment_status?: string
           special_instructions?: string | null
           status?: string
+          status_updated_at?: string
           subtotal?: number
           total?: number
         }
@@ -226,6 +232,7 @@ export type Database = {
       }
       reservations: {
         Row: {
+          admin_notes: string | null
           created_at: string
           date: string
           email: string
@@ -240,6 +247,7 @@ export type Database = {
           time: string
         }
         Insert: {
+          admin_notes?: string | null
           created_at?: string
           date: string
           email: string
@@ -254,6 +262,7 @@ export type Database = {
           time: string
         }
         Update: {
+          admin_notes?: string | null
           created_at?: string
           date?: string
           email?: string
