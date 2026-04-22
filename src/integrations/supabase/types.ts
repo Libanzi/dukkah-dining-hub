@@ -128,6 +128,60 @@ export type Database = {
         }
         Relationships: []
       }
+      orders: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string | null
+          delivery_address: string | null
+          delivery_fee: number
+          id: string
+          items: Json
+          order_number: string
+          order_type: string
+          payment_status: string
+          special_instructions: string | null
+          status: string
+          subtotal: number
+          total: number
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          customer_phone?: string | null
+          delivery_address?: string | null
+          delivery_fee?: number
+          id?: string
+          items?: Json
+          order_number: string
+          order_type: string
+          payment_status?: string
+          special_instructions?: string | null
+          status?: string
+          subtotal?: number
+          total?: number
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string | null
+          delivery_address?: string | null
+          delivery_fee?: number
+          id?: string
+          items?: Json
+          order_number?: string
+          order_type?: string
+          payment_status?: string
+          special_instructions?: string | null
+          status?: string
+          subtotal?: number
+          total?: number
+        }
+        Relationships: []
+      }
       private_dining_enquiries: {
         Row: {
           budget_range: string | null
