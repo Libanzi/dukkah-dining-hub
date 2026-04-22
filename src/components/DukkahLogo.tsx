@@ -1,5 +1,5 @@
 interface DukkahLogoProps {
-  /** Height of the logo in px. Width scales with the viewBox aspect ratio. */
+  /** Height of the logo in px. */
   height?: number;
   className?: string;
   /** Color of the wordmark + monogram. Defaults to currentColor. */
@@ -9,10 +9,11 @@ interface DukkahLogoProps {
 }
 
 /**
- * Dukkah wordmark logo: D U [KK] A H
- * The two K's share a central spine and mirror each other,
- * forming a tall X-like monogram in the middle of the word.
- * Transparent background — inherits page color.
+ * Dukkah wordmark: D U [KK] A H
+ * Real typography (thin, wide-tracked) for the letters,
+ * plus an SVG double-K monogram in the centre — two K's mirrored
+ * back-to-back with their spines toward the middle.
+ * Transparent background.
  */
 export function DukkahLogo({
   height = 56,
@@ -20,68 +21,79 @@ export function DukkahLogo({
   color = "currentColor",
   showTagline = true,
 }: DukkahLogoProps) {
-  // viewBox: 420 wide, 140 tall (with tagline) — keeps aspect close to original
-  const vbHeight = showTagline ? 140 : 100;
-  const width = (420 / vbHeight) * height;
+  // Letter font size scales with overall height
+  const letterSize = height * 0.62;
+  const monogramSize = height * 0.95;
 
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox={`0 0 420 ${vbHeight}`}
-      width={width}
-      height={height}
+    <span
       className={className}
-      role="img"
+      style={{
+        display: "inline-flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: height * 0.08,
+        color,
+        lineHeight: 1,
+      }}
       aria-label="Dukkah Restaurant & Bar"
-      fill={color}
+      role="img"
     >
-      {/* ===== Wordmark: D U K K A H, baseline ~ y=90, cap height ~ 70 ===== */}
-      {/* Letters drawn as thin geometric strokes — stroke width 5 */}
-      <g stroke={color} strokeWidth="5" fill="none" strokeLinecap="square" strokeLinejoin="miter">
-        {/* D — left vertical + arched right side */}
-        <path d="M 20 20 L 20 90" />
-        <path d="M 20 20 L 50 20 Q 75 55 50 90 L 20 90" />
+      <span
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: letterSize * 0.35,
+          fontFamily:
+            "'Cormorant Garamond', 'Cormorant', 'Didot', 'Bodoni Moda', Georgia, serif",
+          fontWeight: 300,
+          fontSize: letterSize,
+          letterSpacing: "0.18em",
+        }}
+      >
+        <span>D</span>
+        <span>U</span>
+        {/* Double-K monogram SVG */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 80 100"
+          height={monogramSize}
+          width={monogramSize * 0.8}
+          fill="none"
+          stroke={color}
+          strokeWidth="3.5"
+          strokeLinecap="square"
+          aria-hidden="true"
+          style={{ display: "block" }}
+        >
+          {/* Left K (reversed) — spine on RIGHT, diagonals open LEFT */}
+          <path d="M 38 5 L 38 95" />
+          <path d="M 38 50 L 8 10" />
+          <path d="M 38 50 L 8 90" />
+          {/* Right K (normal) — spine on LEFT, diagonals open RIGHT */}
+          <path d="M 42 5 L 42 95" />
+          <path d="M 42 50 L 72 10" />
+          <path d="M 42 50 L 72 90" />
+        </svg>
+        <span>A</span>
+        <span>H</span>
+      </span>
 
-        {/* U — two verticals + bottom curve */}
-        <path d="M 80 20 L 80 75 Q 80 90 95 90 L 105 90 Q 120 90 120 75 L 120 20" />
-
-        {/* === Double-K: two K's mirrored back-to-back, diagonals pointing OUTWARD === */}
-        {/* Left K (reversed) — spine on the RIGHT at x=180, diagonals open LEFT */}
-        <path d="M 180 20 L 180 90" />
-        <path d="M 180 55 L 152 20" />
-        <path d="M 180 55 L 152 90" />
-
-        {/* Right K (normal) — spine on the LEFT at x=200, diagonals open RIGHT */}
-        <path d="M 200 20 L 200 90" />
-        <path d="M 200 55 L 228 20" />
-        <path d="M 200 55 L 228 90" />
-
-        {/* A — two diagonals + crossbar */}
-        <path d="M 235 90 L 260 20 L 285 90" />
-        <path d="M 245 65 L 275 65" />
-
-        {/* H — two verticals + crossbar */}
-        <path d="M 305 20 L 305 90" />
-        <path d="M 345 20 L 345 90" />
-        <path d="M 305 55 L 345 55" />
-      </g>
-
-      {/* ===== Tagline ===== */}
       {showTagline && (
-        <text
-          x="210"
-          y="125"
-          textAnchor="middle"
-          fontFamily="Inter, system-ui, sans-serif"
-          fontSize="11"
-          letterSpacing="4"
-          fill={color}
-          opacity="0.85"
+        <span
+          style={{
+            fontFamily: "'Inter', system-ui, sans-serif",
+            fontWeight: 400,
+            fontSize: height * 0.11,
+            letterSpacing: "0.4em",
+            opacity: 0.85,
+            paddingLeft: "0.4em", // compensate for trailing letter-spacing
+          }}
         >
           RESTAURANT &amp; BAR
-        </text>
+        </span>
       )}
-    </svg>
+    </span>
   );
 }
 
