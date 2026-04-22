@@ -53,9 +53,12 @@ export function EventsSection() {
             {events.map((e) => (
               <article key={e.id} className="group rounded-2xl overflow-hidden bg-bg-primary border border-border hover:-translate-y-1 transition-all hover:shadow-warm">
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  {e.image_url && (
-                    <img src={e.image_url} alt={`${e.name} at Dukkah Restaurant & Bar`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                  )}
+                  <img
+                    src={e.image_url || "/photos/event-1.webp"}
+                    alt={`${e.name} at Dukkah Restaurant & Bar`}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
                   <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-gold px-3 py-1 text-[11px] font-bold tracking-widest text-[var(--text-on-gold)]">
                     {formatDate(e.event_date)}
                   </span>
