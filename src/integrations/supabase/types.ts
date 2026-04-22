@@ -14,7 +14,207 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      chat_sessions: {
+        Row: {
+          created_at: string
+          id: string
+          last_active: string
+          messages: Json
+          session_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_active?: string
+          messages?: Json
+          session_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_active?: string
+          messages?: Json
+          session_id?: string
+        }
+        Relationships: []
+      }
+      events: {
+        Row: {
+          created_at: string
+          description: string | null
+          end_time: string | null
+          event_date: string
+          id: string
+          image_url: string | null
+          is_active: boolean
+          is_free: boolean
+          max_tickets: number | null
+          name: string
+          start_time: string
+          ticket_price: number
+          tickets_sold: number
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          end_time?: string | null
+          event_date: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          is_free?: boolean
+          max_tickets?: number | null
+          name: string
+          start_time: string
+          ticket_price?: number
+          tickets_sold?: number
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          end_time?: string | null
+          event_date?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          is_free?: boolean
+          max_tickets?: number | null
+          name?: string
+          start_time?: string
+          ticket_price?: number
+          tickets_sold?: number
+        }
+        Relationships: []
+      }
+      gift_cards: {
+        Row: {
+          amount: number
+          code: string
+          created_at: string
+          delivery_date: string | null
+          id: string
+          is_redeemed: boolean
+          message: string | null
+          recipient_email: string
+          recipient_name: string | null
+          redeemed_at: string | null
+          sender_name: string | null
+        }
+        Insert: {
+          amount: number
+          code: string
+          created_at?: string
+          delivery_date?: string | null
+          id?: string
+          is_redeemed?: boolean
+          message?: string | null
+          recipient_email: string
+          recipient_name?: string | null
+          redeemed_at?: string | null
+          sender_name?: string | null
+        }
+        Update: {
+          amount?: number
+          code?: string
+          created_at?: string
+          delivery_date?: string | null
+          id?: string
+          is_redeemed?: boolean
+          message?: string | null
+          recipient_email?: string
+          recipient_name?: string | null
+          redeemed_at?: string | null
+          sender_name?: string | null
+        }
+        Relationships: []
+      }
+      private_dining_enquiries: {
+        Row: {
+          budget_range: string | null
+          created_at: string
+          email: string
+          event_date: string | null
+          event_type: string | null
+          guest_count: number | null
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          status: string
+        }
+        Insert: {
+          budget_range?: string | null
+          created_at?: string
+          email: string
+          event_date?: string | null
+          event_type?: string | null
+          guest_count?: number | null
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          status?: string
+        }
+        Update: {
+          budget_range?: string | null
+          created_at?: string
+          email?: string
+          event_date?: string | null
+          event_type?: string | null
+          guest_count?: number | null
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      reservations: {
+        Row: {
+          created_at: string
+          date: string
+          email: string
+          id: string
+          name: string
+          occasion: string | null
+          party_size: string
+          phone: string | null
+          seating_preference: string | null
+          special_requests: string | null
+          status: string
+          time: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          email: string
+          id?: string
+          name: string
+          occasion?: string | null
+          party_size: string
+          phone?: string | null
+          seating_preference?: string | null
+          special_requests?: string | null
+          status?: string
+          time: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          email?: string
+          id?: string
+          name?: string
+          occasion?: string | null
+          party_size?: string
+          phone?: string | null
+          seating_preference?: string | null
+          special_requests?: string | null
+          status?: string
+          time?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
