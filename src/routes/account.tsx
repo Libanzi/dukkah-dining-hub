@@ -163,33 +163,31 @@ function AuthScreen() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-black">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,55,0.12),transparent_55%)]" />
+    <div className="relative min-h-screen w-full overflow-hidden bg-bg-primary text-text-primary">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,color-mix(in_oklab,var(--accent-gold)_18%,transparent),transparent_55%)]" />
 
       {/* Top bar */}
       <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white"
+          className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-gold"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Dukkah
         </Link>
-        <div className="flex items-center gap-1 font-serif text-xl text-white">
-          <span className="text-[hsl(45,65%,55%)]">DUKK</span>
-          <span className="inline-block h-1.5 w-1.5 rotate-45 bg-[hsl(15,55%,55%)]" />
-          <span className="text-[hsl(45,65%,55%)]">AH</span>
+        <div className="font-serif text-xl font-semibold tracking-[0.18em] text-gold">
+          DUKKAH
         </div>
       </div>
 
       {/* Card */}
       <div className="relative z-10 flex min-h-[calc(100vh-80px)] items-center justify-center px-5 pb-10">
-        <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.06] p-7 shadow-2xl backdrop-blur-2xl sm:p-9">
+        <div className="w-full max-w-md rounded-2xl border border-border bg-bg-secondary/80 p-7 shadow-[var(--shadow-elevated)] backdrop-blur-xl sm:p-9">
           <div className="mb-6 text-center">
-            <h1 className="font-serif text-3xl font-semibold text-white sm:text-4xl">
+            <h1 className="font-serif text-3xl font-semibold text-text-primary sm:text-4xl">
               {mode === "signin" ? "Welcome back" : "Create your account"}
             </h1>
-            <p className="mt-1.5 text-sm text-white/60">
+            <p className="mt-1.5 text-sm text-text-muted">
               {mode === "signin"
                 ? "Sign in to manage your reservations & orders."
                 : "Join Dukkah to book tables and order online."}
@@ -199,16 +197,16 @@ function AuthScreen() {
           <button
             onClick={signInGoogle}
             disabled={busy}
-            className="flex w-full items-center justify-center gap-3 rounded-full bg-white py-3 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-white/95 disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-bg-primary py-3 text-sm font-semibold text-text-primary shadow-sm transition hover:bg-bg-tertiary disabled:opacity-60"
           >
             <GoogleIcon />
             Continue with Google
           </button>
 
-          <div className="my-5 flex items-center gap-3 text-[11px] uppercase tracking-wider text-white/40">
-            <span className="h-px flex-1 bg-white/15" />
+          <div className="my-5 flex items-center gap-3 text-[11px] uppercase tracking-wider text-text-muted">
+            <span className="h-px flex-1 bg-border" />
             or with email
-            <span className="h-px flex-1 bg-white/15" />
+            <span className="h-px flex-1 bg-border" />
           </div>
 
           <form onSubmit={submit} className="space-y-3">
@@ -243,7 +241,7 @@ function AuthScreen() {
               <button
                 type="button"
                 onClick={() => setShowPw((s) => !s)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-gold"
                 aria-label={showPw ? "Hide password" : "Show password"}
               >
                 {showPw ? (
@@ -259,7 +257,7 @@ function AuthScreen() {
                 <button
                   type="button"
                   onClick={forgot}
-                  className="text-xs text-white/60 hover:text-[hsl(45,65%,65%)]"
+                  className="text-xs text-text-muted hover:text-gold"
                 >
                   Forgot password?
                 </button>
@@ -267,12 +265,12 @@ function AuthScreen() {
             )}
 
             {err && (
-              <p className="rounded-md border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+              <p className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-xs text-destructive">
                 {err}
               </p>
             )}
             {info && (
-              <p className="rounded-md border border-emerald-400/30 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-200">
+              <p className="rounded-md border border-gold/40 bg-gold/10 px-3 py-2 text-xs text-text-secondary">
                 {info}
               </p>
             )}
@@ -287,7 +285,7 @@ function AuthScreen() {
             </button>
           </form>
 
-          <p className="mt-5 text-center text-sm text-white/60">
+          <p className="mt-5 text-center text-sm text-text-muted">
             {mode === "signin" ? "New here? " : "Already have an account? "}
             <button
               onClick={() => {
@@ -295,13 +293,13 @@ function AuthScreen() {
                 setErr(null);
                 setInfo(null);
               }}
-              className="font-semibold text-[hsl(45,65%,65%)] hover:underline"
+              className="font-semibold text-gold hover:underline"
             >
               {mode === "signin" ? "Create an account" : "Sign in"}
             </button>
           </p>
 
-          <p className="mt-5 text-center text-[11px] text-white/40">
+          <p className="mt-5 text-center text-[11px] text-text-muted">
             By continuing you agree to our Terms & Privacy.
           </p>
         </div>
