@@ -1,65 +1,87 @@
 interface DukkahLogoProps {
-  size?: number;
+  /** Height of the logo in px. Width scales with the viewBox aspect ratio. */
+  height?: number;
   className?: string;
-  /** Stroke color for the K marks. Defaults to current text color. */
-  markColor?: string;
-  /** Background fill of the circle. Defaults to cream/bg. */
-  circleColor?: string;
-  /** Optional ring/border color. */
-  ringColor?: string;
+  /** Color of the wordmark + monogram. Defaults to currentColor. */
+  color?: string;
+  /** Show the "RESTAURANT & BAR" tagline beneath the wordmark. */
+  showTagline?: boolean;
 }
 
 /**
- * Dukkah double-K monogram inside a circle.
- * Two mirrored K letterforms sharing a central vertical spine.
- * Pure geometry — no gradients, no shadows.
+ * Dukkah wordmark logo: D U [KK] A H
+ * The two K's share a central spine and mirror each other,
+ * forming a tall X-like monogram in the middle of the word.
+ * Transparent background — inherits page color.
  */
 export function DukkahLogo({
-  size = 64,
+  height = 56,
   className,
-  markColor = "currentColor",
-  circleColor = "var(--bg-primary)",
-  ringColor,
+  color = "currentColor",
+  showTagline = true,
 }: DukkahLogoProps) {
+  // viewBox: 420 wide, 140 tall (with tagline) — keeps aspect close to original
+  const vbHeight = showTagline ? 140 : 100;
+  const width = (420 / vbHeight) * height;
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 200 200"
-      width={size}
-      height={size}
+      viewBox={`0 0 420 ${vbHeight}`}
+      width={width}
+      height={height}
       className={className}
       role="img"
-      aria-label="Dukkah monogram"
+      aria-label="Dukkah Restaurant & Bar"
+      fill={color}
     >
-      {/* Circle background */}
-      <circle
-        cx="100"
-        cy="100"
-        r="98"
-        fill={circleColor}
-        stroke={ringColor ?? "none"}
-        strokeWidth={ringColor ? 2 : 0}
-      />
+      {/* ===== Wordmark: D U K K A H, baseline ~ y=90, cap height ~ 70 ===== */}
+      {/* Letters drawn as thin geometric strokes — stroke width 5 */}
+      <g stroke={color} strokeWidth="5" fill="none" strokeLinecap="square">
+        {/* D — left vertical + arched right side (approx with two diagonals + vertical) */}
+        <path d="M 20 20 L 20 90" />
+        <path d="M 20 20 L 50 20 Q 75 55 50 90 L 20 90" />
 
-      {/* Double-K monogram, centered. Two vertical spines + 4 diagonals. */}
-      <g fill={markColor}>
-        {/* Left K vertical spine */}
-        <rect x="78" y="40" width="10" height="120" />
-        {/* Right K vertical spine */}
-        <rect x="112" y="40" width="10" height="120" />
+        {/* U — two verticals + bottom curve */}
+        <path d="M 80 20 L 80 75 Q 80 90 95 90 L 105 90 Q 120 90 120 75 L 120 20" />
 
-        {/* Left K — mirrored (diagonals open to the LEFT) */}
-        {/* Upper diagonal: from spine-top-left going down-left to bottom-left */}
-        <polygon points="78,98 78,112 38,160 24,160" />
-        {/* Lower diagonal: from spine going up-left to top-left */}
-        <polygon points="78,88 78,102 38,40 24,40" />
+        {/* === Double-K monogram (shares central spine) === */}
+        {/* Central tall spine */}
+        <path d="M 175 8 L 175 100" />
 
-        {/* Right K — normal (diagonals open to the RIGHT) */}
-        {/* Upper diagonal: spine to top-right */}
-        <polygon points="122,102 122,88 162,40 176,40" />
-        {/* Lower diagonal: spine to bottom-right */}
-        <polygon points="122,112 122,98 162,160 176,160" />
+        {/* Left K — diagonals open to the LEFT, meeting the spine at mid-height */}
+        <path d="M 175 55 L 145 20" />
+        <path d="M 175 55 L 145 90" />
+
+        {/* Right K — diagonals open to the RIGHT */}
+        <path d="M 175 55 L 205 20" />
+        <path d="M 175 55 L 205 90" />
+
+        {/* A — two diagonals + crossbar */}
+        <path d="M 235 90 L 260 20 L 285 90" />
+        <path d="M 245 65 L 275 65" />
+
+        {/* H — two verticals + crossbar */}
+        <path d="M 305 20 L 305 90" />
+        <path d="M 345 20 L 345 90" />
+        <path d="M 305 55 L 345 55" />
       </g>
+
+      {/* ===== Tagline ===== */}
+      {showTagline && (
+        <text
+          x="210"
+          y="125"
+          textAnchor="middle"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="11"
+          letterSpacing="4"
+          fill={color}
+          opacity="0.85"
+        >
+          RESTAURANT &amp; BAR
+        </text>
+      )}
     </svg>
   );
 }

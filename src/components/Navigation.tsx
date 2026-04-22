@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, User } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { CartButton } from "./cart/CartDrawer";
+import { DukkahLogo } from "./DukkahLogo";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -27,17 +28,14 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${
-        scrolled ? "shadow-md" : ""
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled ? "backdrop-blur-md shadow-md" : "bg-transparent"
       }`}
-      style={{ backgroundColor: "var(--nav-bg)" }}
+      style={scrolled ? { backgroundColor: "color-mix(in oklab, var(--nav-bg) 70%, transparent)" } : undefined}
     >
       <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 md:h-[72px]">
-        <Link to="/" className="flex items-center gap-2" aria-label="Dukkah Restaurant & Bar — Home">
-          <span className="font-serif text-2xl font-semibold text-gold tracking-[0.18em]">
-            DUKKAH
-          </span>
-          <span className="hidden sm:inline-block h-1.5 w-1.5 rounded-full bg-terracotta" />
+        <Link to="/" className="flex items-center" aria-label="Dukkah Restaurant & Bar — Home">
+          <DukkahLogo height={44} className="text-gold" showTagline={false} />
         </Link>
 
         <ul className="hidden lg:flex items-center gap-7">
