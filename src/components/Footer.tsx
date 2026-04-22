@@ -36,9 +36,9 @@ export function Footer() {
         <div>
           <h4 className="font-serif text-lg font-semibold text-text-primary mb-3">Visit Us</h4>
           <ul className="space-y-2 text-sm text-text-muted">
-            <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-gold mt-0.5 shrink-0" /> 59 Florida Road, Morningside, Durban, 4001</li>
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-gold" /> 031 XXX XXXX</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-gold" /> reservations@dukkah.co.za</li>
+            <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-gold mt-0.5 shrink-0" /><span>59 Florida Road, Morningside, Durban, 4001</span></li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-gold" /><span>031 XXX XXXX</span></li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-gold" /><span>admin@dukkah.co.za</span></li>
           </ul>
         </div>
 

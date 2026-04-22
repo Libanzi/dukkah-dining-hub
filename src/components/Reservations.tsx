@@ -151,7 +151,7 @@ export function Reservations() {
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-gold" />
-                <span>reservations@dukkah.co.za</span>
+                <span>admin@dukkah.co.za</span>
               </p>
             </div>
             <div className="rounded-xl overflow-hidden border border-border">
