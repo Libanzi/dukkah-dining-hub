@@ -61,7 +61,7 @@ export function Navigation() {
           <ThemeToggle />
           <Link
             to="/account"
-            className="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-text-secondary hover:border-gold hover:text-gold"
+            className="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-full border border-gold/40 text-gold hover:bg-gold/10"
             aria-label="My account"
           >
             <User className="h-4 w-4" />
