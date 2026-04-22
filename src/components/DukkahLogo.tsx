@@ -45,16 +45,16 @@ export function DukkahLogo({
         {/* U — two verticals + bottom curve */}
         <path d="M 80 20 L 80 75 Q 80 90 95 90 L 105 90 Q 120 90 120 75 L 120 20" />
 
-        {/* === Double-K: two mirrored K's, each with own spine, separated by a gap === */}
-        {/* Left K — spine at x=160, diagonals open RIGHT toward the gap */}
-        <path d="M 160 20 L 160 90" />
-        <path d="M 160 55 L 188 20" />
-        <path d="M 160 55 L 188 90" />
+        {/* === Double-K: two K's mirrored back-to-back, diagonals pointing OUTWARD === */}
+        {/* Left K (reversed) — spine on the RIGHT at x=180, diagonals open LEFT */}
+        <path d="M 180 20 L 180 90" />
+        <path d="M 180 55 L 152 20" />
+        <path d="M 180 55 L 152 90" />
 
-        {/* Right K — spine at x=220, diagonals open LEFT toward the gap (mirrored) */}
-        <path d="M 220 20 L 220 90" />
-        <path d="M 220 55 L 192 20" />
-        <path d="M 220 55 L 192 90" />
+        {/* Right K (normal) — spine on the LEFT at x=200, diagonals open RIGHT */}
+        <path d="M 200 20 L 200 90" />
+        <path d="M 200 55 L 228 20" />
+        <path d="M 200 55 L 228 90" />
 
         {/* A — two diagonals + crossbar */}
         <path d="M 235 90 L 260 20 L 285 90" />
