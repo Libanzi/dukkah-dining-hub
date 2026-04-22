@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { DukkahName } from "./DukkahName";
 
 const reviews = [
   { quote: "Dukkah is consistently the best restaurant on Florida Road. The lamb shank alone is worth the trip from Johannesburg.", name: "Thabo M." },
@@ -22,7 +23,7 @@ export function Testimonials() {
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow mb-3">In Their Words</p>
           <h2 className="font-serif text-4xl md:text-5xl font-semibold text-text-primary">
-            What Durban Says About Dukkah
+            What Durban Says About <DukkahName />
           </h2>
           <p className="mt-3 text-text-muted">Over 1,400 reviews on Google</p>
         </div>

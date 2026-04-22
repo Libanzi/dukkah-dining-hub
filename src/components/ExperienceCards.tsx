@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { DukkahName } from "./DukkahName";
 
 const cards = [
   {
@@ -36,7 +37,7 @@ export function ExperienceCards() {
     <section className="py-20 md:py-28 px-5">
       <div className="mx-auto max-w-7xl">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <p className="eyebrow mb-3">The Dukkah Experience</p>
+          <p className="eyebrow mb-3">The <DukkahName /> Experience</p>
           <h2 className="font-serif text-4xl md:text-5xl font-semibold text-text-primary">
             Four Reasons to Come Back
           </h2>

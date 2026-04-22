@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { DukkahName } from "./DukkahName";
 import { MENU } from "@/data/menu";
 import { useCart, priceToNumber } from "./cart/CartContext";
 
@@ -18,7 +19,7 @@ export function OrderOnline() {
         <div className="text-center max-w-2xl mx-auto mb-10">
           <p className="eyebrow mb-3">Our Menu · Delivery & Collection</p>
           <h2 className="font-serif text-4xl md:text-5xl font-semibold text-text-primary">
-            Order From Dukkah
+            Order From <DukkahName />
           </h2>
           <p className="mt-3 text-text-muted">
             Add items to your basket — choose delivery or collection at checkout.

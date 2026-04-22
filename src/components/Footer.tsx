@@ -1,5 +1,6 @@
 import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
 import { DukkahLogo } from "./DukkahLogo";
+import { DukkahName } from "./DukkahName";
 
 export function Footer() {
   return (
@@ -53,7 +54,7 @@ export function Footer() {
       </div>
 
       <div className="mx-auto max-w-7xl mt-10 pt-6 border-t border-border flex flex-col md:flex-row gap-2 justify-between text-xs text-text-muted">
-        <p>© 2026 Dukkah Restaurant & Bar. All rights reserved.</p>
+        <p>© 2026 <DukkahName /> Restaurant & Bar. All rights reserved.</p>
         <p>Website by <a href="https://www.payguardafrica.co.za" className="text-gold hover:underline">PayGuard Africa</a></p>
       </div>
     </footer>

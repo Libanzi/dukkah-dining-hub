@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Gift } from "lucide-react";
+import { DukkahName } from "./DukkahName";
 
 const VALUES = [250, 500, 750, 1000, 1500];
 
@@ -15,7 +16,7 @@ export function GiftCards() {
         <div className="text-center max-w-2xl mx-auto mb-12">
           <p className="eyebrow mb-3">The Gift</p>
           <h2 className="font-serif text-4xl md:text-5xl font-semibold text-text-primary">
-            Give the Gift of Dukkah
+            Give the Gift of <DukkahName />
           </h2>
           <p className="mt-3 text-text-muted">Digital gift cards delivered instantly to any inbox</p>
         </div>

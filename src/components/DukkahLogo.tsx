@@ -67,14 +67,14 @@ export function DukkahLogo({
           aria-hidden="true"
           style={{ display: "block" }}
         >
-          {/* Left K (reversed) — spine on RIGHT at x=42, diagonals open LEFT */}
-          <path d="M 42 6 L 42 64" />
-          <path d="M 42 35 L 14 8" />
-          <path d="M 42 35 L 14 62" />
-          {/* Right K (normal) — spine on LEFT at x=58, diagonals open RIGHT */}
-          <path d="M 58 6 L 58 64" />
-          <path d="M 58 35 L 86 8" />
-          <path d="M 58 35 L 86 62" />
+          {/* Left K (reversed) — spine on RIGHT at x=38, diagonals open LEFT, wider gap */}
+          <path d="M 38 6 L 38 64" />
+          <path d="M 38 35 L 14 8" />
+          <path d="M 38 35 L 14 62" />
+          {/* Right K (normal) — spine on LEFT at x=62, diagonals open RIGHT, wider gap */}
+          <path d="M 62 6 L 62 64" />
+          <path d="M 62 35 L 86 8" />
+          <path d="M 62 35 L 86 62" />
         </svg>
         <span>A</span>
         <span>H</span>

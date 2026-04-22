@@ -1,3 +1,5 @@
+import { DukkahName } from "./DukkahName";
+
 export function MeetTheChef() {
   return (
     <section className="py-20 md:py-28 px-5">
@@ -11,7 +13,7 @@ export function MeetTheChef() {
           <p className="mt-6 text-text-secondary leading-relaxed">
             With over 15 years of experience across South Africa, West Africa, and London, our head chef brings
             a deep respect for African ingredients and a fearless approach to technique. Every dish on the
-            Dukkah menu carries the belief that African food deserves its place among the world's great cuisines.
+            <DukkahName /> menu carries the belief that African food deserves its place among the world's great cuisines.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {["Johannesburg Culinary Arts", "London Extern, 2012", "15+ Years"].map((c) => (

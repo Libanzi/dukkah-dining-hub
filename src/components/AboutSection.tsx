@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { DukkahName } from "./DukkahName";
 
 const stats = [
   { value: 20, suffix: "+", label: "Years on Florida Road" },
@@ -76,8 +77,8 @@ export function AboutSection() {
           </h2>
           <div className="mt-6 space-y-4 text-text-secondary leading-relaxed">
             <p>
-              Dukkah Restaurant & Bar has been a cornerstone of Durban's Florida Road dining
-              scene since 2006. Named after the Egyptian spice blend, Dukkah celebrates the
+              <DukkahName /> Restaurant & Bar has been a cornerstone of Durban's Florida Road dining
+              scene since 2006. Named after the Egyptian spice blend, <DukkahName /> celebrates the
               diversity of African food culture — from the Cape Malay spices of the Western
               Cape to the smoky braai traditions of KwaZulu-Natal.
             </p>

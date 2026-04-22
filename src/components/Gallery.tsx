@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { DukkahName } from "./DukkahName";
 
 type Img = { src: string; cat: "Food" | "Cocktails" | "Events" | "Interiors" | "Wine" };
 
@@ -74,7 +75,7 @@ export function Gallery() {
       <div className="mx-auto max-w-7xl">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <p className="eyebrow mb-3">Behind the Scenes</p>
-          <h2 className="font-serif text-4xl md:text-5xl font-semibold text-text-primary">Inside Dukkah</h2>
+          <h2 className="font-serif text-4xl md:text-5xl font-semibold text-text-primary">Inside <DukkahName /></h2>
           <p className="mt-3 text-text-muted">Real moments from our restaurant on Florida Road.</p>
         </div>
 

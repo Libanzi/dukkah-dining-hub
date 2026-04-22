@@ -1,10 +1,31 @@
-import { useState } from "react";
-import { X, Minus, Plus, ShoppingBag, Trash2, Truck, Store, ArrowRight, Check, ArrowLeft } from "lucide-react";
+import { useRef, useState } from "react";
+import {
+  X, Minus, Plus, ShoppingBag, Trash2, Truck, Store,
+  ArrowRight, Check, ArrowLeft, MapPin, Loader2, AlertCircle,
+} from "lucide-react";
 import { useCart } from "./CartContext";
 import { useServerFn } from "@tanstack/react-start";
 import { placeOrder } from "@/server/orders";
 
 type Step = "cart" | "checkout";
+
+/* ---- reverse-geocode using OpenStreetMap Nominatim (no API key required) ---- */
+async function reverseGeocode(lat: number, lon: number): Promise<string> {
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&addressdetails=1`;
+  const res = await fetch(url, {
+    headers: { "Accept-Language": "en", "User-Agent": "DukkahDiningHub/1.0" },
+  });
+  if (!res.ok) throw new Error("Geocoding request failed");
+  const data = await res.json();
+  const a = data.address || {};
+  const parts = [
+    a.house_number ? `${a.house_number} ${a.road || ""}`.trim() : (a.road || ""),
+    a.suburb || a.neighbourhood || a.city_district || "",
+    a.city || a.town || a.village || "",
+    a.postcode || "",
+  ].filter(Boolean);
+  return parts.join(", ");
+}
 
 export function CartDrawer() {
   const { items, open, setOpen, setQty, remove, subtotal, count, clear } = useCart();
@@ -14,6 +35,11 @@ export function CartDrawer() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ order_number: string; total: number; eta: string } | null>(null);
 
+  /* geolocation state */
+  const [locating, setLocating] = useState(false);
+  const [locationError, setLocationError] = useState<string | null>(null);
+  const addressRef = useRef<HTMLTextAreaElement>(null);
+
   const placeOrderFn = useServerFn(placeOrder);
 
   const deliveryFee = type === "delivery" ? (subtotal >= 400 ? 0 : 45) : 0;
@@ -21,13 +47,50 @@ export function CartDrawer() {
 
   const close = () => {
     setOpen(false);
-    // small delay so animation finishes before resetting
     setTimeout(() => {
       if (success) {
         setSuccess(null);
         setStep("cart");
       }
     }, 300);
+  };
+
+  const detectLocation = () => {
+    if (!navigator.geolocation) {
+      setLocationError("Geolocation is not supported by your browser.");
+      return;
+    }
+    setLocating(true);
+    setLocationError(null);
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        try {
+          const address = await reverseGeocode(pos.coords.latitude, pos.coords.longitude);
+          if (addressRef.current) {
+            addressRef.current.value = address;
+            // trigger React's synthetic change event so the form value is picked up
+            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+              window.HTMLTextAreaElement.prototype, "value",
+            )?.set;
+            nativeInputValueSetter?.call(addressRef.current, address);
+            addressRef.current.dispatchEvent(new Event("input", { bubbles: true }));
+          }
+        } catch {
+          setLocationError("Could not determine your address. Please type it in manually.");
+        } finally {
+          setLocating(false);
+        }
+      },
+      (err) => {
+        setLocating(false);
+        if (err.code === err.PERMISSION_DENIED) {
+          setLocationError("Location access denied. Please type your address manually.");
+        } else {
+          setLocationError("Could not get your location. Please type your address manually.");
+        }
+      },
+      { timeout: 10000, maximumAge: 60000 },
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -96,7 +159,9 @@ export function CartDrawer() {
             <h3 className="font-serif text-xl font-semibold">
               {success ? "Order received" : step === "cart" ? "Your Order" : "Checkout"}
             </h3>
-            {!success && step === "cart" && <span className="text-sm text-text-muted">({count})</span>}
+            {!success && step === "cart" && (
+              <span className="text-sm text-text-muted">({count})</span>
+            )}
           </div>
           <button
             onClick={close}
@@ -115,15 +180,26 @@ export function CartDrawer() {
             </div>
             <h4 className="font-serif text-2xl font-semibold mb-2">Thank you!</h4>
             <p className="text-text-muted mb-4">
-              Confirmation <span className="font-bold text-gold">{success.order_number}</span>
-              <br />Estimated time: <span className="font-semibold text-text-primary">{success.eta}</span>
+              Confirmation{" "}
+              <span className="font-bold text-gold">{success.order_number}</span>
+              <br />
+              Estimated time:{" "}
+              <span className="font-semibold text-text-primary">{success.eta}</span>
             </p>
             <p className="text-sm text-text-muted">
-              Total <span className="font-semibold text-text-primary">R{Number(success.total).toLocaleString()}</span>
-              <br />Our team will call to confirm payment.
+              Total{" "}
+              <span className="font-semibold text-text-primary">
+                R{Number(success.total).toLocaleString()}
+              </span>
+              <br />
+              Our team will call to confirm payment.
             </p>
             <button
-              onClick={() => { setSuccess(null); setStep("cart"); setOpen(false); }}
+              onClick={() => {
+                setSuccess(null);
+                setStep("cart");
+                setOpen(false);
+              }}
               className="mt-6 inline-flex items-center justify-center rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-[var(--text-on-gold)] hover:bg-[var(--accent-gold-dark)]"
             >
               Done
@@ -142,7 +218,10 @@ export function CartDrawer() {
               ) : (
                 <ul className="space-y-3">
                   {items.map((i) => (
-                    <li key={i.id} className="flex gap-3 rounded-xl bg-bg-secondary border border-border p-3">
+                    <li
+                      key={i.id}
+                      className="flex gap-3 rounded-xl bg-bg-secondary border border-border p-3"
+                    >
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-sm text-text-primary truncate">{i.name}</p>
                         <p className="text-xs text-text-muted mt-0.5">{i.category}</p>
@@ -231,26 +310,74 @@ export function CartDrawer() {
                 </div>
                 {type === "delivery" && (
                   <p className="text-[11px] text-text-muted mt-2">
-                    Within 10km of Florida Road · Free over R400
+                    Within 10 km of Florida Road · Free over R400
                   </p>
                 )}
               </div>
 
               {/* Customer fields */}
               <div className="space-y-3">
-                <input name="name" required placeholder="Full name *" className={inputCls} maxLength={120} />
-                <input name="email" type="email" required placeholder="Email *" className={inputCls} maxLength={255} />
-                <input name="phone" type="tel" placeholder="Phone (for updates)" className={inputCls} maxLength={40} />
+                <input
+                  name="name"
+                  required
+                  placeholder="Full name *"
+                  className={inputCls}
+                  maxLength={120}
+                />
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="Email *"
+                  className={inputCls}
+                  maxLength={255}
+                />
+                <input
+                  name="phone"
+                  type="tel"
+                  placeholder="Phone (for updates)"
+                  className={inputCls}
+                  maxLength={40}
+                />
+
                 {type === "delivery" && (
-                  <textarea
-                    name="address"
-                    required
-                    rows={2}
-                    placeholder="Delivery address (within 10km of Florida Road) *"
-                    className={inputCls}
-                    maxLength={400}
-                  />
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-semibold text-text-muted uppercase tracking-wider">
+                        Delivery address *
+                      </label>
+                      <button
+                        type="button"
+                        onClick={detectLocation}
+                        disabled={locating}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-gold/50 px-3 py-1 text-[11px] font-semibold text-gold hover:bg-gold hover:text-[var(--text-on-gold)] disabled:opacity-50 transition-all"
+                      >
+                        {locating ? (
+                          <Loader2 className="h-3 w-3 animate-spin" />
+                        ) : (
+                          <MapPin className="h-3 w-3" />
+                        )}
+                        {locating ? "Detecting…" : "Use my location"}
+                      </button>
+                    </div>
+                    <textarea
+                      ref={addressRef}
+                      name="address"
+                      required
+                      rows={2}
+                      placeholder="Street address, suburb (within 10 km of Florida Road) *"
+                      className={inputCls}
+                      maxLength={400}
+                    />
+                    {locationError && (
+                      <div className="flex items-start gap-2 rounded-lg bg-terracotta/10 border border-terracotta/30 px-3 py-2 text-xs text-terracotta">
+                        <AlertCircle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
+                        {locationError}
+                      </div>
+                    )}
+                  </div>
                 )}
+
                 <textarea
                   name="notes"
                   rows={2}
@@ -265,7 +392,13 @@ export function CartDrawer() {
                 <Row label="Subtotal" value={`R${subtotal.toLocaleString()}`} />
                 <Row
                   label={type === "delivery" ? "Delivery fee" : "Collection"}
-                  value={type === "delivery" ? (deliveryFee === 0 ? "Free" : `R${deliveryFee}`) : "Free"}
+                  value={
+                    type === "delivery"
+                      ? deliveryFee === 0
+                        ? "Free"
+                        : `R${deliveryFee}`
+                      : "Free"
+                  }
                 />
                 <Row label="Total" value={`R${total.toLocaleString()}`} bold />
               </div>
@@ -279,8 +412,13 @@ export function CartDrawer() {
                 disabled={submitting || items.length === 0}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-[var(--text-on-gold)] hover:bg-[var(--accent-gold-dark)] disabled:opacity-60"
               >
-                {submitting ? "Placing order…" : (
-                  <>Place Order · R{total.toLocaleString()} <ArrowRight className="h-4 w-4" /></>
+                {submitting ? (
+                  "Placing order…"
+                ) : (
+                  <>
+                    Place Order · R{total.toLocaleString()}{" "}
+                    <ArrowRight className="h-4 w-4" />
+                  </>
                 )}
               </button>
               <p className="mt-2 text-[11px] text-text-muted text-center">
@@ -302,10 +440,16 @@ function TypeChip({
       type="button"
       onClick={onClick}
       className={`flex items-center gap-3 rounded-xl border p-3 text-left transition-all ${
-        active ? "border-gold bg-bg-primary shadow-warm" : "border-border bg-bg-primary/60 hover:border-gold/50"
+        active
+          ? "border-gold bg-bg-primary shadow-warm"
+          : "border-border bg-bg-primary/60 hover:border-gold/50"
       }`}
     >
-      <div className={`h-9 w-9 rounded-full flex items-center justify-center ${active ? "bg-gold text-[var(--text-on-gold)]" : "bg-gold/15 text-gold"}`}>
+      <div
+        className={`h-9 w-9 rounded-full flex items-center justify-center ${
+          active ? "bg-gold text-[var(--text-on-gold)]" : "bg-gold/15 text-gold"
+        }`}
+      >
         {icon}
       </div>
       <div className="flex-1">
@@ -318,9 +462,15 @@ function TypeChip({
 
 function Row({ label, value, bold }: { label: string; value: string; bold?: boolean }) {
   return (
-    <div className={`flex justify-between ${bold ? "text-base pt-1.5 border-t border-border mt-1" : "text-text-muted"}`}>
+    <div
+      className={`flex justify-between ${
+        bold ? "text-base pt-1.5 border-t border-border mt-1" : "text-text-muted"
+      }`}
+    >
       <span>{label}</span>
-      <span className={bold ? "font-bold text-gold" : "font-semibold text-text-primary"}>{value}</span>
+      <span className={bold ? "font-bold text-gold" : "font-semibold text-text-primary"}>
+        {value}
+      </span>
     </div>
   );
 }

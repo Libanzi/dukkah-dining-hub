@@ -4,41 +4,46 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
   {
     img: "/photos/hero-exterior.jpg",
+    imgPosition: "center center",
     eyebrow: "Since 2006",
     heading: "Where Africa Comes to the Table",
-    sub: "Fine dining on Florida Road, Durban",
+    sub: "Twenty years of fine dining on Florida Road, Durban — where every meal becomes a memory",
     primary: { label: "Reserve Your Table", href: "#reservations" },
     secondary: { label: "View Our Menu", href: "#menu" },
   },
   {
     img: "/photos/hero-bar.jpg",
+    imgPosition: "center 40%",
     eyebrow: "The Bar",
     heading: "Crafted for the South African Palate",
-    sub: "80+ spirits and signature African-inspired cocktails",
+    sub: "80+ premium spirits, signature African-inspired cocktails, and a bar built for long evenings",
     primary: { label: "View Cocktail Menu", href: "#menu" },
-    secondary: { label: "Visit Tonight", href: "#reservations" },
+    secondary: { label: "Book a Seat Tonight", href: "#reservations" },
   },
   {
     img: "/photos/hero-food.jpg",
+    imgPosition: "center 35%",
     eyebrow: "À La Carte",
     heading: "Food as Heritage",
-    sub: "African ingredients, global technique",
+    sub: "Cape Malay spice, smoky braai, and coastal seafood — African flavours elevated to fine dining",
     primary: { label: "Explore the Menu", href: "#menu" },
     secondary: { label: "Reserve a Table", href: "#reservations" },
   },
   {
     img: "/photos/hero-interior.jpg",
+    imgPosition: "center center",
     eyebrow: "The Room",
     heading: "Warmth, Art & African Hospitality",
-    sub: "Dine inside our intimate, candlelit space on Florida Road",
+    sub: "An intimate, candlelit dining room where African art and warm hospitality set the scene",
     primary: { label: "Book a Table", href: "#reservations" },
-    secondary: { label: "Inside Dukkah", href: "#gallery" },
+    secondary: { label: "Explore the Space", href: "#gallery" },
   },
   {
     img: "/photos/hero-brunch.jpg",
+    imgPosition: "center 30%",
     eyebrow: "Sunday Sessions",
     heading: "Sunday Brunch Jazz",
-    sub: "Bottomless mimosas and live music every Sunday",
+    sub: "Live jazz, bottomless mimosas, and a brunch menu worth waking up early for — every Sunday",
     primary: { label: "See Brunch Menu", href: "#menu" },
     secondary: { label: "Reserve Sunday", href: "#reservations" },
   },
@@ -74,10 +79,18 @@ export function HeroCarousel() {
             src={s.img}
             alt={`${s.heading} at Dukkah Restaurant & Bar — Florida Road, Durban`}
             className="absolute inset-0 h-full w-full object-cover"
+            style={{
+              objectPosition: s.imgPosition,
+              filter: "contrast(1.12) brightness(0.92) saturate(1.08)",
+            }}
             loading={i === 0 ? "eager" : "lazy"}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/55" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(0,0,0,0.6)_0%,_transparent_60%)]" />
+          {/* Primary gradient: strong bottom for text legibility, lighter top to show sky/scene */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/30" />
+          {/* Left-side directional vignette keeps text pop against any image */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(0,0,0,0.65)_0%,_transparent_55%)]" />
+          {/* Subtle top bar so nav remains readable */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent h-32" />
           <div className="relative z-10 flex h-full items-center px-6 md:px-16">
             <div className="max-w-3xl text-white animate-fade-up">
               <p className="eyebrow !text-gold mb-4">{s.eyebrow}</p>
