@@ -1,26 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navigation } from "@/components/Navigation";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { ExperienceCards } from "@/components/ExperienceCards";
+import { AboutSection } from "@/components/AboutSection";
+import { MenuShowcase } from "@/components/MenuShowcase";
+import { Reservations } from "@/components/Reservations";
+import { OrderOnline } from "@/components/OrderOnline";
+import { EventsSection } from "@/components/EventsSection";
+import { GiftCards } from "@/components/GiftCards";
+import { Gallery } from "@/components/Gallery";
+import { Testimonials } from "@/components/Testimonials";
+import { MeetTheChef } from "@/components/MeetTheChef";
+import { PrivateDining } from "@/components/PrivateDining";
+import { CTASection } from "@/components/CTASection";
+import { Footer } from "@/components/Footer";
+import { ChatbotWidget } from "@/components/ChatbotWidget";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-bg-primary text-text-primary">
+      <Navigation />
+      <main>
+        <HeroCarousel />
+        <ExperienceCards />
+        <AboutSection />
+        <MenuShowcase />
+        <Reservations />
+        <OrderOnline />
+        <EventsSection />
+        <GiftCards />
+        <Gallery />
+        <Testimonials />
+        <MeetTheChef />
+        <PrivateDining />
+        <CTASection />
+      </main>
+      <Footer />
+      <ChatbotWidget />
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
