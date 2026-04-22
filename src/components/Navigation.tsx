@@ -80,7 +80,8 @@ export function Navigation() {
       {mobileOpen && (
         <div className="fixed inset-0 z-50 bg-bg-primary animate-fade-in lg:hidden">
           <div className="flex items-center justify-between px-5 h-[72px]">
-            <span className="font-serif text-2xl font-semibold text-gold">DUKKAH</span>
+            <DukkahLogo height={40} className="text-gold" showTagline={false} />
+
             <button
               onClick={() => setMobileOpen(false)}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 text-gold"
