@@ -164,15 +164,7 @@ function AuthScreen() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-black">
-      {/* Background image */}
-      <img
-        src="/photos/interior-1.webp"
-        alt=""
-        aria-hidden
-        className="absolute inset-0 h-full w-full object-cover scale-105"
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,55,0.18),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,55,0.12),transparent_55%)]" />
 
       {/* Top bar */}
       <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
