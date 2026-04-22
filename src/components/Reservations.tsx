@@ -141,9 +141,18 @@ export function Reservations() {
               </ul>
             </div>
             <div className="space-y-2 text-sm pt-4 border-t border-border">
-              <p className="flex items-start gap-2"><MapPin className="h-4 w-4 text-gold mt-0.5 shrink-0" /> 59 Florida Road, Morningside, Durban</p>
-              <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-gold" /> 031 XXX XXXX</p>
-              <p className="flex items-center gap-2"><Mail className="h-4 w-4 text-gold" /> reservations@dukkah.co.za</p>
+              <p className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 text-gold mt-0.5 shrink-0" />
+                <span>59 Florida Road, Morningside, Durban</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-gold" />
+                <span>031 XXX XXXX</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-gold" />
+                <span>reservations@dukkah.co.za</span>
+              </p>
             </div>
             <div className="rounded-xl overflow-hidden border border-border">
               <iframe

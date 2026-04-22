@@ -26,7 +26,7 @@ export function MeetTheChef() {
         </div>
         <div className="order-1 lg:order-2 relative aspect-[4/5] overflow-hidden rounded-2xl shadow-elevated">
           <img
-            src="https://images.pexels.com/photos/887827/pexels-photo-887827.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            src="/photos/team-1.webp"
             alt="Head chef at Dukkah Restaurant & Bar — Florida Road, Durban"
             className="h-full w-full object-cover"
             loading="lazy"

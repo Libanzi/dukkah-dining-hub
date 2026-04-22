@@ -63,7 +63,7 @@ export function AboutSection() {
       <div className="mx-auto max-w-7xl grid gap-12 lg:grid-cols-2 items-center">
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-elevated">
           <img
-            src="https://images.pexels.com/photos/2253643/pexels-photo-2253643.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            src="/photos/interior-2.webp"
             alt="Inside Dukkah Restaurant & Bar — Florida Road, Durban"
             className="h-full w-full object-cover"
             loading="lazy"

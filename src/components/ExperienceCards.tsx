@@ -3,28 +3,28 @@ import { ArrowRight } from "lucide-react";
 const cards = [
   {
     pill: "FINE DINING",
-    img: "https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: "/photos/food-7.webp",
     title: "À La Carte Dining",
     desc: "Classic mains, curated wine pairings, and Chef's daily specials",
     href: "#menu",
   },
   {
     pill: "COCKTAIL BAR",
-    img: "https://images.pexels.com/photos/1304540/pexels-photo-1304540.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: "/photos/bar-2.webp",
     title: "Craft Cocktails",
     desc: "80+ spirits, signature African-inspired cocktails, and bar snacks",
     href: "#menu",
   },
   {
     pill: "LIVE EVENTS",
-    img: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: "/photos/event-1.webp",
     title: "Live Music & Events",
     desc: "Friday jazz, Saturday Afrobeat, private functions",
     href: "#events",
   },
   {
     pill: "PRIVATE DINING",
-    img: "https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: "/photos/interior-3.webp",
     title: "Private Dining",
     desc: "Exclusive rooms, set menus, catering for 10–80 guests",
     href: "#private-dining",

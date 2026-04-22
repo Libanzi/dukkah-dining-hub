@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    img: "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    img: "/photos/exterior-1.webp",
     eyebrow: "Since 2006",
     heading: "Where Africa Comes to the Table",
     sub: "Fine dining on Florida Road, Durban",
@@ -11,15 +11,7 @@ const slides = [
     secondary: { label: "View Our Menu", href: "#menu" },
   },
   {
-    img: "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    eyebrow: "À La Carte",
-    heading: "Food as Heritage",
-    sub: "African ingredients, global technique",
-    primary: { label: "Explore the Menu", href: "#menu" },
-    secondary: { label: "Reserve a Table", href: "#reservations" },
-  },
-  {
-    img: "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    img: "/photos/bar-1.webp",
     eyebrow: "The Bar",
     heading: "Crafted for the South African Palate",
     sub: "80+ spirits and signature African-inspired cocktails",
@@ -27,20 +19,28 @@ const slides = [
     secondary: { label: "Visit Tonight", href: "#reservations" },
   },
   {
-    img: "https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    eyebrow: "Live Music",
-    heading: "Jazz & Afrobeat, Every Weekend",
-    sub: "Friday Jazz · Saturday Afrobeat · Sunday Brunch Jazz",
-    primary: { label: "See Upcoming Events", href: "#events" },
-    secondary: { label: "Book a Table", href: "#reservations" },
+    img: "/photos/food-1.webp",
+    eyebrow: "À La Carte",
+    heading: "Food as Heritage",
+    sub: "African ingredients, global technique",
+    primary: { label: "Explore the Menu", href: "#menu" },
+    secondary: { label: "Reserve a Table", href: "#reservations" },
   },
   {
-    img: "https://images.pexels.com/photos/279847/pexels-photo-279847.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    eyebrow: "Private Dining",
-    heading: "Host Your Next Occasion",
-    sub: "Intimate rooms for 10 to 80 guests",
-    primary: { label: "Enquire", href: "#private-dining" },
-    secondary: { label: "View Spaces", href: "#private-dining" },
+    img: "/photos/interior-1.webp",
+    eyebrow: "The Room",
+    heading: "Warmth, Art & African Hospitality",
+    sub: "Dine inside our intimate, candlelit space on Florida Road",
+    primary: { label: "Book a Table", href: "#reservations" },
+    secondary: { label: "Inside Dukkah", href: "#gallery" },
+  },
+  {
+    img: "/photos/brunch-6.webp",
+    eyebrow: "Sushi & Brunch",
+    heading: "Sunday Brunch Jazz",
+    sub: "Sushi, bottomless mimosas and live music every Sunday",
+    primary: { label: "See Brunch Menu", href: "#menu" },
+    secondary: { label: "Reserve Sunday", href: "#reservations" },
   },
 ];
 
@@ -76,7 +76,7 @@ export function HeroCarousel() {
             className="absolute inset-0 h-full w-full object-cover"
             loading={i === 0 ? "eager" : "lazy"}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30 dark:from-black/90 dark:via-black/60 dark:to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/30 dark:from-black/90 dark:via-black/60 dark:to-black/40" />
           <div className="relative z-10 flex h-full items-center px-6 md:px-16">
             <div className="max-w-3xl text-white animate-fade-up">
               <p className="eyebrow !text-gold mb-4">{s.eyebrow}</p>

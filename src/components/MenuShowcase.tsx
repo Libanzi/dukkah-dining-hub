@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Plus, Check } from "lucide-react";
 import { MENU } from "@/data/menu";
+import { useCart, priceToNumber } from "./cart/CartContext";
 
 const dietIcon = {
   vegetarian: "🌿",
@@ -10,6 +12,7 @@ const dietIcon = {
 
 export function MenuShowcase() {
   const [tab, setTab] = useState(MENU[0].id);
+  const cart = useCart();
   const current = MENU.find((t) => t.id === tab) || MENU[0];
 
   return (
@@ -83,12 +86,30 @@ export function MenuShowcase() {
                     ))}
                   </div>
                 )}
-                <a
-                  href="#order"
-                  className="mt-4 inline-flex items-center justify-center rounded-full border border-gold/60 px-4 py-2 text-xs font-semibold text-gold transition-all hover:bg-gold hover:text-[var(--text-on-gold)]"
-                >
-                  Add to Order
-                </a>
+                {(() => {
+                  const price = priceToNumber(item.price);
+                  const id = `${current.id}::${item.name}`;
+                  const inCart = cart.items.some((i) => i.id === id);
+                  if (price === 0) return null;
+                  return (
+                    <button
+                      onClick={() =>
+                        cart.add({ id, name: item.name, price, category: current.label })
+                      }
+                      className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full border border-gold/60 px-4 py-2 text-xs font-semibold text-gold transition-all hover:bg-gold hover:text-[var(--text-on-gold)]"
+                    >
+                      {inCart ? (
+                        <>
+                          <Check className="h-3.5 w-3.5" /> Added
+                        </>
+                      ) : (
+                        <>
+                          <Plus className="h-3.5 w-3.5" /> Add to Order
+                        </>
+                      )}
+                    </button>
+                  );
+                })()}
               </div>
             </article>
           ))}

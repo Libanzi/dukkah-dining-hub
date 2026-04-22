@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { CartButton } from "./cart/CartDrawer";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -58,6 +59,7 @@ export function Navigation() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
+          <CartButton />
           <a
             href="#reservations"
             className="hidden sm:inline-flex items-center rounded-full bg-gold px-5 py-2 text-sm font-semibold text-[var(--text-on-gold)] transition-all hover:bg-[var(--accent-gold-dark)] hover:scale-[1.03] active:scale-[0.97]"
