@@ -3,7 +3,6 @@ import { Navigation } from "@/components/Navigation";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { ExperienceCards } from "@/components/ExperienceCards";
 import { AboutSection } from "@/components/AboutSection";
-import { MenuShowcase } from "@/components/MenuShowcase";
 import { Reservations } from "@/components/Reservations";
 import { OrderOnline } from "@/components/OrderOnline";
 import { EventsSection } from "@/components/EventsSection";
@@ -31,9 +30,8 @@ function Index() {
           <HeroCarousel />
           <ExperienceCards />
           <AboutSection />
-          <MenuShowcase />
-          <Reservations />
           <OrderOnline />
+          <Reservations />
           <EventsSection />
           <GiftCards />
           <Gallery />
