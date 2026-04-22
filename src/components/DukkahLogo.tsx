@@ -23,7 +23,7 @@ export function DukkahLogo({
 }: DukkahLogoProps) {
   // Letter font size scales with overall height
   const letterSize = height * 0.62;
-  const monogramSize = height * 0.95;
+  const monogramSize = height * 1.05;
 
   return (
     <span
@@ -53,27 +53,28 @@ export function DukkahLogo({
       >
         <span>D</span>
         <span>U</span>
-        {/* Double-K monogram SVG */}
+        {/* Double-K monogram — small-cap height with breathing space between */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 80 100"
-          height={monogramSize}
-          width={monogramSize * 0.8}
+          viewBox="0 0 100 70"
+          height={monogramSize * 0.7}
+          width={monogramSize}
           fill="none"
           stroke={color}
-          strokeWidth="3.5"
+          strokeWidth="3"
           strokeLinecap="square"
+          strokeLinejoin="miter"
           aria-hidden="true"
           style={{ display: "block" }}
         >
-          {/* Left K (reversed) — spine on RIGHT, diagonals open LEFT */}
-          <path d="M 38 5 L 38 95" />
-          <path d="M 38 50 L 8 10" />
-          <path d="M 38 50 L 8 90" />
-          {/* Right K (normal) — spine on LEFT, diagonals open RIGHT */}
-          <path d="M 42 5 L 42 95" />
-          <path d="M 42 50 L 72 10" />
-          <path d="M 42 50 L 72 90" />
+          {/* Left K (reversed) — spine on RIGHT at x=42, diagonals open LEFT */}
+          <path d="M 42 6 L 42 64" />
+          <path d="M 42 35 L 14 8" />
+          <path d="M 42 35 L 14 62" />
+          {/* Right K (normal) — spine on LEFT at x=58, diagonals open RIGHT */}
+          <path d="M 58 6 L 58 64" />
+          <path d="M 58 35 L 86 8" />
+          <path d="M 58 35 L 86 62" />
         </svg>
         <span>A</span>
         <span>H</span>
