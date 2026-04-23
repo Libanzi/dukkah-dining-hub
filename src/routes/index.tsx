@@ -16,6 +16,7 @@ import { Footer } from "@/components/Footer";
 import { ChatbotWidget } from "@/components/ChatbotWidget";
 import { CartProvider } from "@/components/cart/CartContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { TourFab } from "@/components/TourOverlay";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -43,6 +44,7 @@ function Index() {
         <Footer />
         <ChatbotWidget />
         <CartDrawer />
+        <TourFab mode="user" />
       </div>
     </CartProvider>
   );

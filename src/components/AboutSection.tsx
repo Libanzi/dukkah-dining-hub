@@ -11,7 +11,10 @@ const stats = [
 function useCounter(target: number, active: boolean, duration = 2000) {
   const [val, setVal] = useState(0);
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      setVal(0);
+      return;
+    }
     const start = performance.now();
     let raf = 0;
     const tick = (now: number) => {
@@ -47,12 +50,7 @@ export function AboutSection() {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setActive(true);
-          obs.disconnect();
-        }
-      },
+      ([e]) => setActive(e.isIntersecting),
       { threshold: 0.3 }
     );
     obs.observe(el);
@@ -64,7 +62,7 @@ export function AboutSection() {
       <div className="mx-auto max-w-7xl grid gap-12 lg:grid-cols-2 items-center">
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-elevated">
           <img
-            src="/photos/interior-8.webp"
+            src="/photos/new-int-dining-1.jpeg"
             alt="Inside Dukkah Restaurant & Bar — Florida Road, Durban"
             className="h-full w-full object-cover"
             loading="lazy"

@@ -6,6 +6,7 @@ import { ReservationsAdmin } from "@/components/admin/ReservationsAdmin";
 import { OrdersAdmin } from "@/components/admin/OrdersAdmin";
 import { EventsAdmin } from "@/components/admin/EventsAdmin";
 import { EnquiriesAdmin } from "@/components/admin/EnquiriesAdmin";
+import { TourButton } from "@/components/TourOverlay";
 
 export const Route = createFileRoute("/admin")({
   component: AdminPage,
@@ -51,6 +52,7 @@ function AdminPage() {
           </Link>
           <div className="flex items-center gap-3">
             <span className="hidden sm:inline text-xs text-text-muted">{email}</span>
+            <TourButton mode="admin" label="Admin Tour" className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-gold/40 px-3 py-1.5 text-xs font-semibold text-gold hover:bg-gold/10 transition-colors" />
             <button
               onClick={async () => {
                 await signOut();
