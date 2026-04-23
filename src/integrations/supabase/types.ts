@@ -359,6 +359,69 @@ export type Database = {
         }
         Relationships: []
       }
+      private_dining_bookings: {
+        Row: {
+          id: string
+          booking_ref: string
+          room_name: string
+          room_capacity: number
+          base_price_per_person: number
+          event_date: string
+          guest_count: number
+          customer_name: string
+          customer_email: string
+          customer_phone: string | null
+          event_type: string | null
+          special_requests: string | null
+          pricing_modifier: number
+          total_amount: number
+          deposit_amount: number
+          payment_type: string
+          status: string
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          booking_ref: string
+          room_name: string
+          room_capacity: number
+          base_price_per_person: number
+          event_date: string
+          guest_count: number
+          customer_name: string
+          customer_email: string
+          customer_phone?: string | null
+          event_type?: string | null
+          special_requests?: string | null
+          pricing_modifier: number
+          total_amount: number
+          deposit_amount: number
+          payment_type: string
+          status?: string
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          booking_ref?: string
+          room_name?: string
+          room_capacity?: number
+          base_price_per_person?: number
+          event_date?: string
+          guest_count?: number
+          customer_name?: string
+          customer_email?: string
+          customer_phone?: string | null
+          event_type?: string | null
+          special_requests?: string | null
+          pricing_modifier?: number
+          total_amount?: number
+          deposit_amount?: number
+          payment_type?: string
+          status?: string
+          created_at?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

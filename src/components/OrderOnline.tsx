@@ -14,7 +14,7 @@ export function OrderOnline() {
   const current = visibleTabs.find((t) => t.id === tab) || visibleTabs[0];
 
   return (
-    <section id="order" className="py-20 md:py-28 px-5 bg-bg-secondary">
+    <section id="order" className="py-20 md:py-28 px-5">
       <div className="mx-auto max-w-7xl">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <p className="eyebrow mb-3">Our Menu · Delivery & Collection</p>

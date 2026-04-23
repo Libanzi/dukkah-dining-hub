@@ -55,7 +55,9 @@ type NodeId =
   | "enquiry.message"
   | "enquiry.admin.ask"
   | "enquiry.confirm"
-  | "enquiry.done";
+  | "enquiry.done"
+  /* private dining */
+  | "private.intro";
 
 interface Draft {
   name?: string;
@@ -145,6 +147,7 @@ export function ChatbotWidget() {
           [
             { label: "🍽️  Book a table", next: "book.intro" },
             { label: "🎟️  Book event tickets", next: "tickets.intro" },
+            { label: "🏛️  Private dining booking", next: "private.intro" },
             { label: "📋  Today's menu", next: "menu.intro" },
             { label: "🕒  Opening hours", next: "hours" },
             { label: "🎷  Events this week", next: "events" },
@@ -307,6 +310,21 @@ export function ChatbotWidget() {
         );
         break;
 
+      /* ---- PRIVATE DINING ---- */
+      case "private.intro":
+        botSay(
+          "🏛️ Private Dining at Dukkah\n\nWe have three exclusive rooms:\n\n• The Spice Room — 10–20 guests · From R450/person\n• The Gallery Room — 20–45 guests · From R395/person\n• Full Venue Buyout — up to 80 guests · From R500/person\n\n📅 Booking terms:\n✅ 7+ days ahead — 10% early discount\n🔸 Less than 3 days — +20% short notice fee\n🔴 Less than 24 hours — +50% emergency fee\n\n💳 A 50% deposit is required at booking.",
+          [
+            { label: "📅  Book online now", next: "main", hint: "private-dining" },
+            { label: "↩  Main menu", next: "main" },
+          ],
+        );
+        // Redirect to private dining section
+        setTimeout(() => {
+          document.getElementById("private-dining")?.scrollIntoView({ behavior: "smooth" });
+        }, 800);
+        break;
+
       /* ---- ENQUIRY FLOW ---- */
       case "enquiry.intro":
         botSay("What is your enquiry about?", [
@@ -391,12 +409,16 @@ export function ChatbotWidget() {
 
   const submitTickets = async (d: Draft) => {
     setBusy(true);
+    const count = parseInt(d.ticket_count || "1", 10);
     const { error } = await supabase.from("ticket_bookings").insert({
-      event_name: d.event_name,
+      event_name: d.event_name ?? "",
       customer_name: d.name!,
       customer_email: d.email!,
       customer_phone: d.phone || null,
-      ticket_count: parseInt(d.ticket_count || "1", 10),
+      ticket_count: count,
+      ticket_price_each: 0,
+      total: 0,
+      booking_ref: `TB-${Date.now().toString(36).toUpperCase()}`,
       status: "pending",
       payment_status: "unpaid",
     });

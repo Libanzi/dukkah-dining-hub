@@ -6,14 +6,14 @@ import { CartButton } from "./cart/CartDrawer";
 import { DukkahLogo } from "./DukkahLogo";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Menu", href: "#order" },
-  { label: "Reservations", href: "#reservations" },
-  { label: "Events", href: "#events" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#footer" },
-  { label: "Blog", href: "/blog", route: true },
+  { label: "Home", href: "/#home", route: null },
+  { label: "Menu", href: "/#order", route: null },
+  { label: "Reservations", href: "/#reservations", route: null },
+  { label: "Events", href: "/#events", route: null },
+  { label: "Gallery", href: null, route: "/gallery" },
+  { label: "About", href: "/#about", route: null },
+  { label: "Contact", href: "/#footer", route: null },
+  { label: "Blog", href: null, route: "/blog" },
 ];
 
 export function Navigation() {
@@ -44,14 +44,14 @@ export function Navigation() {
             <li key={l.label}>
               {l.route ? (
                 <Link
-                  to={l.href}
+                  to={l.route}
                   className="text-sm font-medium text-text-secondary transition-colors hover:text-gold relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gold after:transition-all hover:after:w-full"
                 >
                   {l.label}
                 </Link>
               ) : (
                 <a
-                  href={l.href}
+                  href={l.href!}
                   className="text-sm font-medium text-text-secondary transition-colors hover:text-gold relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gold after:transition-all hover:after:w-full"
                 >
                   {l.label}
@@ -72,7 +72,7 @@ export function Navigation() {
           </Link>
           <CartButton />
           <a
-            href="#reservations"
+            href="/#reservations"
             className="hidden sm:inline-flex items-center rounded-full bg-gold px-5 py-2 text-sm font-semibold text-[var(--text-on-gold)] transition-all hover:bg-[var(--accent-gold-dark)] hover:scale-[1.03] active:scale-[0.97]"
           >
             Reserve
@@ -105,7 +105,7 @@ export function Navigation() {
               <li key={l.label}>
                 {l.route ? (
                   <Link
-                    to={l.href}
+                    to={l.route}
                     onClick={() => setMobileOpen(false)}
                     className="font-serif text-3xl text-text-primary hover:text-gold transition-colors"
                   >
@@ -113,7 +113,7 @@ export function Navigation() {
                   </Link>
                 ) : (
                   <a
-                    href={l.href}
+                    href={l.href!}
                     onClick={() => setMobileOpen(false)}
                     className="font-serif text-3xl text-text-primary hover:text-gold transition-colors"
                   >
@@ -124,7 +124,7 @@ export function Navigation() {
             ))}
             <li className="mt-4">
               <a
-                href="#reservations"
+                href="/#reservations"
                 onClick={() => setMobileOpen(false)}
                 className="inline-flex items-center rounded-full bg-gold px-7 py-3 text-base font-semibold text-[var(--text-on-gold)]"
               >

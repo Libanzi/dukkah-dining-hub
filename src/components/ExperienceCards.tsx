@@ -4,28 +4,28 @@ import { DukkahName } from "./DukkahName";
 const cards = [
   {
     pill: "FINE DINING",
-    img: "/photos/food-7.webp",
+    img: "/photos/new-food-beef-2.jpeg",
     title: "À La Carte Dining",
     desc: "Classic mains, curated wine pairings, and Chef's daily specials",
     href: "#menu",
   },
   {
     pill: "COCKTAIL BAR",
-    img: "/photos/bar-2.webp",
+    img: "/photos/new-cocktail-red.jpeg",
     title: "Craft Cocktails",
     desc: "80+ spirits, signature African-inspired cocktails, and bar snacks",
     href: "#menu",
   },
   {
     pill: "LIVE EVENTS",
-    img: "/photos/event-1.webp",
+    img: "/photos/new-event-dining.jpeg",
     title: "Live Music & Events",
     desc: "Friday jazz, Saturday Afrobeat, private functions",
     href: "#events",
   },
   {
     pill: "PRIVATE DINING",
-    img: "/photos/interior-11.webp",
+    img: "/photos/new-int-private-2.jpeg",
     title: "Private Dining",
     desc: "Exclusive rooms, set menus, catering for 10–80 guests",
     href: "#private-dining",

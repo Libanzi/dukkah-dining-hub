@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
+import { DukkahName } from "@/components/DukkahName";
 import {
   ArrowLeft,
   Loader2,
@@ -175,8 +176,8 @@ function AuthScreen() {
           <ArrowLeft className="h-4 w-4" />
           Back to Dukkah
         </Link>
-        <div className="font-serif text-xl font-semibold tracking-[0.18em] text-gold">
-          DUKKAH
+        <div className="font-serif text-xl font-semibold text-gold">
+          <DukkahName />
         </div>
       </div>
 

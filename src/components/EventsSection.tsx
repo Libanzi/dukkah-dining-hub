@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Calendar, Clock, Ticket, X, ArrowLeft, Check, ArrowRight, Users } from "lucide-react";
+import { Calendar, Clock, Ticket, X, ArrowLeft, Check, ArrowRight, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useServerFn } from "@tanstack/react-start";
 import { createTicketBooking } from "@/server/tickets";
@@ -330,18 +330,27 @@ export function EventsSection() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [idx, setIdx] = useState(0);
 
   useEffect(() => {
     supabase
       .from("events")
       .select("*")
       .order("event_date", { ascending: true })
-      .limit(6)
+      .limit(9)
       .then(({ data }) => {
         setEvents((data as Event[]) || []);
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    if (events.length < 2) return;
+    const t = setInterval(() => setIdx((i) => (i + 1) % events.length), 4000);
+    return () => clearInterval(t);
+  }, [events.length]);
+
+  const go = (n: number) => setIdx((n + events.length) % events.length);
 
   const formatDate = (d: string) =>
     new Date(d)
@@ -353,7 +362,7 @@ export function EventsSection() {
       <section id="events" className="py-20 md:py-28 px-5 bg-bg-secondary">
         <div className="mx-auto max-w-7xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <p className="eyebrow mb-3">Live & Loud</p>
+            <p className="eyebrow mb-3">Live &amp; Loud</p>
             <h2 className="font-serif text-4xl md:text-5xl font-semibold text-text-primary">
               What's On at <DukkahName />
             </h2>
@@ -362,63 +371,90 @@ export function EventsSection() {
 
           {loading ? (
             <p className="text-center text-text-muted">Loading events…</p>
+          ) : events.length === 0 ? (
+            <p className="text-center text-text-muted py-10">No upcoming events scheduled — check back soon.</p>
           ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {events.map((e) => (
-                <article
-                  key={e.id}
-                  className="group rounded-2xl overflow-hidden bg-bg-primary border border-border hover:-translate-y-1 transition-all hover:shadow-warm"
-                >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img
-                      src={e.image_url || "/photos/event-1.webp"}
-                      alt={`${e.name} at Dukkah Restaurant & Bar`}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-gold px-3 py-1 text-[11px] font-bold tracking-widest text-[var(--text-on-gold)]">
-                      {formatDate(e.event_date)}
-                    </span>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-serif text-xl font-semibold mb-2">{e.name}</h3>
-                    <p className="text-sm text-text-muted mb-4 line-clamp-3">{e.description}</p>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="flex items-center gap-1 text-text-secondary">
-                        <Clock className="h-4 w-4 text-gold" /> From {e.start_time}
-                      </span>
-                      <span className="font-semibold text-gold">
-                        {e.is_free ? "Free entry" : `R${e.ticket_price}`}
-                      </span>
+            <div className="relative overflow-hidden rounded-2xl shadow-elevated">
+              {/* Carousel */}
+              <div
+                className="flex transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${idx * 100}%)` }}
+              >
+                {events.map((e) => (
+                  <article key={e.id} className="w-full shrink-0">
+                    <div className="relative aspect-[16/9] md:aspect-[21/9]">
+                      <img
+                        src={e.image_url || "/photos/event-1.webp"}
+                        alt={`${e.name} at Dukkah Restaurant & Bar`}
+                        className="absolute inset-0 h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+                      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
+                        <span className="mb-3 inline-flex w-fit rounded-full bg-gold px-3 py-1 text-[11px] font-bold tracking-widest text-[var(--text-on-gold)]">
+                          {formatDate(e.event_date)}
+                        </span>
+                        <h3 className="font-serif text-2xl md:text-4xl font-semibold text-white mb-2">{e.name}</h3>
+                        <p className="text-sm md:text-base text-white/75 mb-2 max-w-lg line-clamp-2">{e.description}</p>
+                        <div className="flex flex-wrap items-center gap-4 mb-5 text-sm">
+                          <span className="flex items-center gap-1.5 text-white/80">
+                            <Clock className="h-4 w-4 text-gold" /> From {e.start_time}
+                          </span>
+                          <span className="font-bold text-gold text-base">
+                            {e.is_free ? "Free entry" : `R${e.ticket_price} / person`}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => setSelectedEvent(e)}
+                          className="inline-flex w-fit items-center gap-2 rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-[var(--text-on-gold)] hover:bg-[var(--accent-gold-dark)] transition-colors"
+                        >
+                          <Ticket className="h-4 w-4" />
+                          {e.is_free ? "Reserve My Spot" : "Book & Pay Tickets"}
+                        </button>
+                      </div>
                     </div>
-                    <button
-                      onClick={() => setSelectedEvent(e)}
-                      className="mt-4 w-full inline-flex items-center justify-center gap-2 rounded-full border border-gold/60 px-4 py-2 text-xs font-semibold text-gold hover:bg-gold hover:text-[var(--text-on-gold)] transition-all"
-                    >
-                      <Ticket className="h-4 w-4" />{" "}
-                      {e.is_free ? "Reserve My Spot" : "Book & Pay Tickets"}
-                    </button>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                ))}
+              </div>
+
+              {/* Arrows */}
+              {events.length > 1 && (
+                <>
+                  <button onClick={() => go(idx - 1)} aria-label="Previous event"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-black/40 text-white backdrop-blur flex items-center justify-center hover:bg-black/60 transition-colors">
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+                  <button onClick={() => go(idx + 1)} aria-label="Next event"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-black/40 text-white backdrop-blur flex items-center justify-center hover:bg-black/60 transition-colors">
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </>
+              )}
+
+              {/* Dots */}
+              {events.length > 1 && (
+                <div className="absolute bottom-4 right-6 z-10 flex gap-1.5">
+                  {events.map((_, i) => (
+                    <button key={i} onClick={() => go(i)} aria-label={`Event ${i + 1}`}
+                      className={`rounded-full transition-all ${i === idx ? "w-5 h-2 bg-gold" : "w-2 h-2 bg-white/50"}`} />
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
           <div className="mt-10 rounded-2xl bg-terracotta px-6 md:px-10 py-8 text-center md:text-left md:flex md:items-center md:justify-between gap-6">
             <div>
-              <h3 className="font-serif text-2xl md:text-3xl font-semibold text-white">
-                Host a Private Event
-              </h3>
+              <h3 className="font-serif text-2xl md:text-3xl font-semibold text-white">Host a Private Event</h3>
               <p className="mt-2 text-white/90 max-w-xl">
-                From corporate dinners to milestone birthdays — <DukkahName className="text-white" />'s private dining rooms are
-                available for exclusive hire.
+                From corporate dinners to milestone birthdays — <DukkahName className="text-white" />'s private dining rooms are available for exclusive hire.
               </p>
             </div>
-            <a
-              href="#private-dining"
-              className="inline-flex mt-4 md:mt-0 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-terracotta hover:bg-bg-primary transition-colors"
-            >
-              Enquire Now →
+            <a href="#private-dining"
+              className="inline-flex mt-4 md:mt-0 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-terracotta hover:bg-bg-primary transition-colors">
+              Book Private Dining →
             </a>
           </div>
         </div>
