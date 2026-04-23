@@ -6,7 +6,7 @@ const rooms = [
   {
     name: "The Spice Room",
     capacity: "10–20 guests",
-    img: "/photos/interior-3.webp",
+    img: "/photos/interior-13.webp",
     features: ["Dedicated server", "AV screen", "Custom menu", "Air-conditioned"],
     price: "From R450 / person",
   },

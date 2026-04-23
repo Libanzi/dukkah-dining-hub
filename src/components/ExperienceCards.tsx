@@ -25,7 +25,7 @@ const cards = [
   },
   {
     pill: "PRIVATE DINING",
-    img: "/photos/interior-3.webp",
+    img: "/photos/interior-11.webp",
     title: "Private Dining",
     desc: "Exclusive rooms, set menus, catering for 10–80 guests",
     href: "#private-dining",

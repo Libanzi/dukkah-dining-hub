@@ -5,19 +5,16 @@ import { DukkahName } from "./DukkahName";
 type Img = { src: string; cat: "Food" | "Cocktails" | "Events" | "Interiors" | "Wine" };
 
 const images: Img[] = [
-  // Interiors
-  { src: "/photos/interior-1.webp", cat: "Interiors" },
-  { src: "/photos/interior-2.webp", cat: "Interiors" },
-  { src: "/photos/interior-3.webp", cat: "Interiors" },
+  // Interiors — actual dining room & lounge shots
   { src: "/photos/interior-4.webp", cat: "Interiors" },
-  { src: "/photos/interior-5.webp", cat: "Interiors" },
-  { src: "/photos/interior-6.webp", cat: "Interiors" },
-  { src: "/photos/interior-7.webp", cat: "Interiors" },
   { src: "/photos/interior-8.webp", cat: "Interiors" },
-  { src: "/photos/interior-9.webp", cat: "Interiors" },
-  { src: "/photos/interior-10.webp", cat: "Interiors" },
+  { src: "/photos/interior-7.webp", cat: "Interiors" },
+  { src: "/photos/interior-6.webp", cat: "Interiors" },
+  { src: "/photos/interior-13.webp", cat: "Interiors" },
+  { src: "/photos/interior-1.webp", cat: "Interiors" },
   { src: "/photos/interior-11.webp", cat: "Interiors" },
-  { src: "/photos/interior-12.webp", cat: "Interiors" },
+  { src: "/photos/bar-3.webp", cat: "Interiors" },
+  { src: "/photos/exterior-1.webp", cat: "Interiors" },
   // Food
   { src: "/photos/food-1.webp", cat: "Food" },
   { src: "/photos/food-2.webp", cat: "Food" },
@@ -31,6 +28,10 @@ const images: Img[] = [
   { src: "/photos/food-10.webp", cat: "Food" },
   { src: "/photos/food-11.webp", cat: "Food" },
   { src: "/photos/food-12.webp", cat: "Food" },
+  { src: "/photos/interior-3.webp", cat: "Food" },
+  { src: "/photos/interior-5.webp", cat: "Food" },
+  { src: "/photos/exterior-3.webp", cat: "Food" },
+  { src: "/photos/team-1.webp", cat: "Food" },
   { src: "/photos/brunch-1.webp", cat: "Food" },
   { src: "/photos/brunch-2.webp", cat: "Food" },
   { src: "/photos/brunch-3.webp", cat: "Food" },
@@ -39,13 +40,15 @@ const images: Img[] = [
   // Cocktails
   { src: "/photos/bar-1.webp", cat: "Cocktails" },
   { src: "/photos/bar-2.webp", cat: "Cocktails" },
-  { src: "/photos/bar-3.webp", cat: "Cocktails" },
   { src: "/photos/bar-4.webp", cat: "Cocktails" },
   { src: "/photos/bar-5.webp", cat: "Cocktails" },
   { src: "/photos/bar-6.webp", cat: "Cocktails" },
   { src: "/photos/bar-7.webp", cat: "Cocktails" },
   { src: "/photos/bar-8.webp", cat: "Cocktails" },
   { src: "/photos/bar-9.webp", cat: "Cocktails" },
+  { src: "/photos/interior-2.webp", cat: "Cocktails" },
+  { src: "/photos/team-2.webp", cat: "Cocktails" },
+  { src: "/photos/team-3.webp", cat: "Cocktails" },
   // Wine
   { src: "/photos/wine-1.webp", cat: "Wine" },
   { src: "/photos/wine-2.webp", cat: "Wine" },
@@ -53,7 +56,7 @@ const images: Img[] = [
   { src: "/photos/wine-4.webp", cat: "Wine" },
   // Events
   { src: "/photos/event-1.webp", cat: "Events" },
-  { src: "/photos/exterior-1.webp", cat: "Events" },
+  { src: "/photos/interior-12.webp", cat: "Events" },
   { src: "/photos/exterior-2.webp", cat: "Events" },
 ];
 

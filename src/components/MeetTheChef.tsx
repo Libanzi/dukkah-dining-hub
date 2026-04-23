@@ -28,8 +28,8 @@ export function MeetTheChef() {
         </div>
         <div className="order-1 lg:order-2 relative aspect-[4/5] overflow-hidden rounded-2xl shadow-elevated">
           <img
-            src="/photos/team-1.webp"
-            alt="Head chef at Dukkah Restaurant & Bar — Florida Road, Durban"
+            src="/photos/team-2.webp"
+            alt="Head bartender at Dukkah Restaurant & Bar — Florida Road, Durban"
             className="h-full w-full object-cover"
             loading="lazy"
           />
