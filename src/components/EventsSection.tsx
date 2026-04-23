@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Calendar, Clock, Ticket, X, ArrowLeft, Check, ArrowRight, Users } from "lucide-react";
+import { Calendar, Clock, Ticket, X, ArrowLeft, Check, ArrowRight, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useServerFn } from "@tanstack/react-start";
 import { createTicketBooking } from "@/server/tickets";

@@ -169,7 +169,7 @@ function PrivateDiningModal({ onClose }: { onClose: () => void }) {
   const [error, setError] = useState<string | null>(null);
   const [booking, setBooking] = useState<{
     ref: string; total_amount: number; deposit_amount: number;
-    pricing_modifier: number; payfast_url: string; payfast_params: Record<string, string>;
+    payment_type: string; pricing_modifier: number; payfast_url: string; payfast_params: Record<string, string>;
   } | null>(null);
 
   const createBookingFn = useServerFn(createPrivateDiningBooking);
@@ -221,7 +221,7 @@ function PrivateDiningModal({ onClose }: { onClose: () => void }) {
           payment_type: paymentType,
         },
       });
-      setBooking(res);
+      setBooking({ ref: res.booking_ref, total_amount: res.total_amount, deposit_amount: res.deposit_amount, payment_type: res.payment_type, pricing_modifier: res.pricing_modifier, payfast_url: res.payfast_url, payfast_params: res.payfast_params });
       setStep("payment");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not create booking. Please try again.");

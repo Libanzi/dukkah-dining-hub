@@ -409,12 +409,16 @@ export function ChatbotWidget() {
 
   const submitTickets = async (d: Draft) => {
     setBusy(true);
+    const count = parseInt(d.ticket_count || "1", 10);
     const { error } = await supabase.from("ticket_bookings").insert({
-      event_name: d.event_name,
+      event_name: d.event_name ?? "",
       customer_name: d.name!,
       customer_email: d.email!,
       customer_phone: d.phone || null,
-      ticket_count: parseInt(d.ticket_count || "1", 10),
+      ticket_count: count,
+      ticket_price_each: 0,
+      total: 0,
+      booking_ref: `TB-${Date.now().toString(36).toUpperCase()}`,
       status: "pending",
       payment_status: "unpaid",
     });
