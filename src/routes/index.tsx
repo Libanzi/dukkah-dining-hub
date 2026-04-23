@@ -10,6 +10,7 @@ import { GiftCards } from "@/components/GiftCards";
 import { Gallery } from "@/components/Gallery";
 import { Testimonials } from "@/components/Testimonials";
 import { MeetTheChef } from "@/components/MeetTheChef";
+import { StaffSection } from "@/components/StaffSection";
 import { PrivateDining } from "@/components/PrivateDining";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
@@ -37,6 +38,7 @@ function Index() {
           <Gallery />
           <Testimonials />
           <MeetTheChef />
+          <StaffSection />
           <PrivateDining />
           <CTASection />
         </main>
