@@ -6,13 +6,13 @@ import { CartButton } from "./cart/CartDrawer";
 import { DukkahLogo } from "./DukkahLogo";
 
 const navLinks = [
-  { label: "Home", href: "#home", route: null },
-  { label: "Menu", href: "#order", route: null },
-  { label: "Reservations", href: "#reservations", route: null },
-  { label: "Events", href: "#events", route: null },
+  { label: "Home", href: "/#home", route: null },
+  { label: "Menu", href: "/#order", route: null },
+  { label: "Reservations", href: "/#reservations", route: null },
+  { label: "Events", href: "/#events", route: null },
   { label: "Gallery", href: null, route: "/gallery" },
-  { label: "About", href: "#about", route: null },
-  { label: "Contact", href: "#footer", route: null },
+  { label: "About", href: "/#about", route: null },
+  { label: "Contact", href: "/#footer", route: null },
 ];
 
 export function Navigation() {
@@ -71,7 +71,7 @@ export function Navigation() {
           </Link>
           <CartButton />
           <a
-            href="#reservations"
+            href="/#reservations"
             className="hidden sm:inline-flex items-center rounded-full bg-gold px-5 py-2 text-sm font-semibold text-[var(--text-on-gold)] transition-all hover:bg-[var(--accent-gold-dark)] hover:scale-[1.03] active:scale-[0.97]"
           >
             Reserve
@@ -123,7 +123,7 @@ export function Navigation() {
             ))}
             <li className="mt-4">
               <a
-                href="#reservations"
+                href="/#reservations"
                 onClick={() => setMobileOpen(false)}
                 className="inline-flex items-center rounded-full bg-gold px-7 py-3 text-base font-semibold text-[var(--text-on-gold)]"
               >

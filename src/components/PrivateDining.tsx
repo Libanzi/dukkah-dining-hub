@@ -479,7 +479,7 @@ export function PrivateDining() {
 
   return (
     <>
-      <section id="private-dining" className="py-20 md:py-28 px-5 bg-bg-secondary">
+      <section id="private-dining" className="py-20 md:py-28 px-5">
         <div className="mx-auto max-w-7xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <p className="eyebrow mb-3">Private Dining</p>

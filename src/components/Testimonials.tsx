@@ -18,7 +18,7 @@ const loop = [...reviews, ...reviews];
 
 export function Testimonials() {
   return (
-    <section className="py-20 md:py-28 bg-bg-secondary overflow-hidden">
+    <section className="py-20 md:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-5 mb-10">
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow mb-3">In Their Words</p>

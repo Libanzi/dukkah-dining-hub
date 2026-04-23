@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DukkahName } from "./DukkahName";
 
 const slides = [
@@ -114,10 +114,10 @@ export function HeroCarousel() {
 
       {/* Content */}
       <div
-        className="relative z-10 flex h-full flex-col justify-end pb-24 px-6 md:px-16"
+        className="relative z-10 flex h-full flex-col justify-center px-6 md:px-16"
         style={{ opacity: fading ? 0 : 1, transition: "opacity 0.4s ease" }}
       >
-        <div className="max-w-7xl w-full mx-auto grid lg:grid-cols-[1fr_auto] gap-8 items-end">
+        <div className="max-w-7xl w-full mx-auto grid lg:grid-cols-[1fr_auto] gap-8 items-center">
           {/* Left column */}
           <div className="max-w-2xl">
             <p className="eyebrow !text-gold/90 mb-4 tracking-widest">{s.eyebrow}</p>
@@ -165,24 +165,10 @@ export function HeroCarousel() {
               </a>
             </div>
 
-            {/* Review quote */}
-            <div className="mt-8 flex items-start gap-3 max-w-md">
-              <div className="flex gap-0.5 pt-0.5 shrink-0">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-3 w-3 fill-gold text-gold" />
-                ))}
-              </div>
-              <div>
-                <p className="font-display italic text-white/70 text-sm leading-relaxed">
-                  "{s.review.quote}"
-                </p>
-                <p className="mt-1 text-xs text-gold/80 font-semibold">{s.review.name} · Google Reviews</p>
-              </div>
-            </div>
           </div>
 
           {/* Right column — slide counter + nav (desktop) */}
-          <div className="hidden lg:flex flex-col items-end gap-4 pb-1">
+          <div className="hidden lg:flex flex-col items-end gap-4">
             <div className="flex flex-col gap-2">
               {slides.map((_, i) => (
                 <button

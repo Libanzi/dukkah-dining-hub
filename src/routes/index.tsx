@@ -27,13 +27,13 @@ function Index() {
         <ExperienceCards />
         <AboutSection />
         <OrderOnline />
-        <Reservations />
-        <EventsSection />
         <GiftCards />
-        <Testimonials />
         <StaffSection />
         <PrivateDining />
         <CTASection />
+        <EventsSection />
+        <Testimonials />
+        <Reservations />
       </main>
       <Footer />
       <ChatbotWidget />
