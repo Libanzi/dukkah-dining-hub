@@ -7,9 +7,7 @@ import { Reservations } from "@/components/Reservations";
 import { OrderOnline } from "@/components/OrderOnline";
 import { EventsSection } from "@/components/EventsSection";
 import { GiftCards } from "@/components/GiftCards";
-import { Gallery } from "@/components/Gallery";
 import { Testimonials } from "@/components/Testimonials";
-import { MeetTheChef } from "@/components/MeetTheChef";
 import { StaffSection } from "@/components/StaffSection";
 import { PrivateDining } from "@/components/PrivateDining";
 import { CTASection } from "@/components/CTASection";
@@ -35,9 +33,7 @@ function Index() {
           <Reservations />
           <EventsSection />
           <GiftCards />
-          <Gallery />
           <Testimonials />
-          <MeetTheChef />
           <StaffSection />
           <PrivateDining />
           <CTASection />

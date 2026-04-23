@@ -1,225 +1,171 @@
-import { useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DukkahName } from "./DukkahName";
 
-const slides = [
+const staff = [
   {
     img: "/photos/brunch-1.webp",
     imgPosition: "center top",
-    service: "Kitchen Excellence",
-    role: "Executive Chef & Kitchen Team",
-    headline: "Every plate is a story told with fire and precision.",
-    description:
-      "Our kitchen is led by a chef with over 15 years across Johannesburg, Lagos, and London. From the oxtail croquettes to the Cape Malay spring rolls, every dish is built on deep respect for African ingredients and obsessive technique.",
-    stats: ["15+ Years Experience", "African Cuisine", "Seasonal Menus"],
-    review: {
-      quote: "Honestly the most beautiful plating I've ever seen. The Cape Malay spring rolls — wow.",
-      name: "Sarah W.",
-    },
+    name: "Chef [Name TBC]",
+    role: "Executive Chef",
+    bio: "Over 15 years across Johannesburg, Lagos, and London. Every plate on the menu carries a deep respect for African ingredients and a fearless approach to technique.",
+    tags: ["Fine Dining", "African Cuisine", "Seasonal Menus"],
   },
   {
     img: "/photos/team-2.webp",
     imgPosition: "center 20%",
-    service: "Bar Craft",
-    role: "Head Mixologist & Bar Team",
-    headline: "80+ spirits. Zero shortcuts. Pure African inspiration.",
-    description:
-      "Our bar programme is built around African botanicals, local distilleries, and a team who treats every cocktail as a craft. From the signature Durban Sling to our curated whisky selection, the bar sets the tone for the entire evening.",
-    stats: ["80+ Spirits", "African Botanicals", "Craft Cocktails"],
-    review: {
-      quote: "Incredible atmosphere, attentive staff, and cocktails I still dream about three months later.",
-      name: "Priya N.",
-    },
+    name: "[Name TBC]",
+    role: "Head Mixologist",
+    bio: "Built our bar programme around African botanicals and rare local distilleries. 80+ spirits, signature cocktails, and a team who treats every drink as a craft.",
+    tags: ["80+ Spirits", "Craft Cocktails", "African Botanicals"],
   },
   {
-    img: "/photos/interior-8.webp",
-    imgPosition: "center",
-    service: "Floor Hospitality",
-    role: "Front of House Team",
-    headline: "From the welcome drink to the last goodbye.",
-    description:
-      "Our floor team is trained to anticipate — not react. Every guest is greeted by name, every dietary need is remembered, and every table receives the same level of attention whether it is a Tuesday lunch or a Saturday celebration.",
-    stats: ["Attentive", "Knowledgeable", "Always Warm"],
-    review: {
-      quote: "From the welcome drink to the dessert, every moment was considered. World-class.",
-      name: "Mandla S.",
-    },
+    img: "/photos/interior-9.webp",
+    imgPosition: "center 22%",
+    name: "[Name TBC]",
+    role: "Wine Sommelier",
+    bio: "Curates our 200+ label cellar with passion for South African estates and emerging African vineyards. Every pairing is a conversation, not a transaction.",
+    tags: ["200+ Labels", "SA & International", "Expert Pairings"],
   },
   {
-    img: "/photos/bar-6.webp",
-    imgPosition: "center",
-    service: "Wine Programme",
-    role: "Sommelier & Wine Team",
-    headline: "Every bottle has a story. Ours know them all.",
-    description:
-      "Our wine list is curated across South African estates, European classics, and emerging African labels. Our sommelier guides every pairing with knowledge and passion — whether you are celebrating or simply exploring.",
-    stats: ["200+ Labels", "SA & International", "Expert Pairings"],
-    review: {
-      quote: "The wine list is sensational and our sommelier knew every story behind every bottle.",
-      name: "Rohan P.",
-    },
-  },
-  {
-    img: "/photos/interior-11.webp",
-    imgPosition: "center 30%",
-    service: "Private Dining",
-    role: "Events & Private Dining Team",
-    headline: "Your milestone deserves its own room.",
-    description:
-      "From intimate birthday dinners to full venue buyouts for 80 guests, our private dining team handles every detail — custom menus, floral arrangements, AV setup, and a dedicated floor team assigned exclusively to your event.",
-    stats: ["10–80 Guests", "Custom Menus", "Full AV & Décor"],
-    review: {
-      quote: "Hosted my 40th here. Chef's private dining menu was exceptional. Every guest raved about it.",
-      name: "Zanele D.",
-    },
+    img: "/photos/interior-10.webp",
+    imgPosition: "center 22%",
+    name: "[Name TBC]",
+    role: "Floor Manager",
+    bio: "Sets the standard for every guest interaction from the first greeting to the last goodbye. Our floor is warm because our people are.",
+    tags: ["Hospitality", "Fine Dining Service", "Guest Experience"],
   },
 ];
 
-const INTERVAL_MS = 6000;
+const INTERVAL_MS = 4000;
 
 export function StaffSection() {
-  const [current, setCurrent] = useState(0);
+  const [idx, setIdx] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const go = useCallback(
-    (next: number) => {
-      if (transitioning) return;
-      setTransitioning(true);
-      setTimeout(() => {
-        setCurrent((next + slides.length) % slides.length);
-        setTransitioning(false);
-      }, 300);
-    },
-    [transitioning]
-  );
+  const go = useCallback((next: number) => {
+    if (transitioning) return;
+    setTransitioning(true);
+    setTimeout(() => {
+      setIdx((next + staff.length) % staff.length);
+      setTransitioning(false);
+    }, 250);
+  }, [transitioning]);
+
+  const resetInterval = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => go(idx + 1), INTERVAL_MS);
+  }, [idx, go]);
 
   useEffect(() => {
-    const t = setInterval(() => go(current + 1), INTERVAL_MS);
-    return () => clearInterval(t);
-  }, [current, go]);
+    intervalRef.current = setInterval(() => setIdx((i) => (i + 1) % staff.length), INTERVAL_MS);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, []);
 
-  const s = slides[current];
+  const prev = () => { go(idx - 1); resetInterval(); };
+  const next = () => { go(idx + 1); resetInterval(); };
+  const goTo = (i: number) => { go(i); resetInterval(); };
 
   return (
-    <section className="relative overflow-hidden" style={{ minHeight: "85vh" }}>
-      {/* Background image */}
-      <div
-        className="absolute inset-0 transition-opacity duration-500"
-        style={{ opacity: transitioning ? 0 : 1 }}
-      >
-        <img
-          src={s.img}
-          alt=""
-          aria-hidden="true"
-          className="h-full w-full object-cover"
-          style={{ objectPosition: s.imgPosition }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
-      </div>
-
-      {/* Content */}
-      <div
-        className="relative z-10 flex flex-col justify-center h-full min-h-[85vh] px-5 py-20"
-      >
-        <div className="mx-auto max-w-7xl w-full grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left — service info */}
-          <div
-            className="transition-all duration-500"
-            style={{ opacity: transitioning ? 0 : 1, transform: transitioning ? "translateY(12px)" : "translateY(0)" }}
-          >
-            <p className="eyebrow mb-4 text-gold">{s.service}</p>
-            <h2 className="font-serif text-4xl md:text-5xl font-semibold text-white leading-tight mb-2">
-              {s.headline}
-            </h2>
-            <p className="text-gold/80 font-semibold text-sm mb-6">{s.role}</p>
-            <p className="text-white/75 leading-relaxed max-w-lg mb-8">{s.description}</p>
-
-            <div className="flex flex-wrap gap-2 mb-10">
-              {s.stats.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-gold/40 text-gold/90 px-3 py-1 text-xs font-semibold"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            {/* Review */}
-            <div className="border-l-2 border-gold pl-5">
-              <div className="flex gap-1 mb-2">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-3.5 w-3.5 fill-gold text-gold" />
-                ))}
-              </div>
-              <p className="font-display italic text-white/85 leading-relaxed text-sm">
-                "{s.review.quote}"
-              </p>
-              <p className="mt-2 text-xs font-semibold text-gold">{s.review.name} · Google Reviews</p>
-            </div>
-          </div>
-
-          {/* Right — slide counter & nav */}
-          <div className="hidden lg:flex flex-col items-end justify-between h-full py-4">
-            <p className="text-white/40 text-xs tracking-widest uppercase">
-              The <DukkahName /> Team
-            </p>
-            <div className="flex flex-col items-end gap-3">
-              {slides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => go(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={`rounded-full transition-all duration-300 ${
-                    i === current
-                      ? "w-2 h-8 bg-gold"
-                      : "w-2 h-2 bg-white/30 hover:bg-white/60"
-                  }`}
-                />
-              ))}
-            </div>
-            <p className="font-serif text-white/25 text-6xl font-semibold select-none">
-              {String(current + 1).padStart(2, "0")}
-            </p>
-          </div>
+    <section className="py-20 md:py-28 px-5 bg-bg-secondary">
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <p className="eyebrow mb-3">Our People</p>
+          <h2 className="font-serif text-4xl md:text-5xl font-semibold text-text-primary leading-tight">
+            The Faces of <DukkahName />
+          </h2>
+          <p className="mt-4 text-text-secondary leading-relaxed">
+            Every experience starts with a person who cares. Meet the team behind the food, the bar, and the floor.
+          </p>
         </div>
 
-        {/* Bottom controls */}
-        <div className="absolute bottom-8 left-0 right-0 px-5">
-          <div className="mx-auto max-w-7xl flex items-center justify-between">
-            {/* Mobile dots */}
-            <div className="flex gap-2 lg:hidden">
-              {slides.map((_, i) => (
-                <button
+        {/* Carousel wrapper */}
+        <div className="relative">
+          {/* Cards track — shows 1 on mobile, 2 on md, 3 on lg */}
+          <div className="overflow-hidden">
+            <div
+              className="flex gap-6 transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(calc(-${idx} * (100% / 3 + 8px)))` }}
+            >
+              {/* Duplicate for seamless wrap */}
+              {[...staff, ...staff].map((s, i) => (
+                <div
                   key={i}
-                  onClick={() => go(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={`rounded-full transition-all duration-300 ${
-                    i === current ? "w-6 h-2 bg-gold" : "w-2 h-2 bg-white/30"
-                  }`}
-                />
+                  className="shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                >
+                  <article className="group rounded-2xl overflow-hidden bg-bg-primary border border-border shadow-warm/20 hover:-translate-y-1 transition-all">
+                    <div className="relative aspect-[3/4] overflow-hidden">
+                      <img
+                        src={s.img}
+                        alt={`${s.role} at Dukkah Restaurant & Bar`}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        style={{ objectPosition: s.imgPosition }}
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                        <p className="text-gold text-[10px] font-bold tracking-widest uppercase mb-1">{s.role}</p>
+                        <h3 className="font-serif text-xl font-semibold text-white">{s.name}</h3>
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <p className="text-text-secondary text-sm leading-relaxed">{s.bio}</p>
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {s.tags.map((t) => (
+                          <span key={t} className="rounded-full bg-gold/10 border border-gold/25 text-gold px-2.5 py-0.5 text-[11px] font-semibold">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                </div>
               ))}
             </div>
-
-            {/* Prev / Next */}
-            <div className="flex gap-3 ml-auto">
-              <button
-                onClick={() => go(current - 1)}
-                aria-label="Previous"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:border-gold hover:text-gold transition-colors"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={() => go(current + 1)}
-                aria-label="Next"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:border-gold hover:text-gold transition-colors"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
           </div>
+
+          {/* Navigation arrows */}
+          <button
+            onClick={prev}
+            aria-label="Previous staff member"
+            className="absolute left-0 top-1/3 -translate-x-4 z-10 h-10 w-10 rounded-full bg-bg-primary border border-border shadow-md flex items-center justify-center text-text-primary hover:border-gold hover:text-gold transition-colors"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={next}
+            aria-label="Next staff member"
+            className="absolute right-0 top-1/3 translate-x-4 z-10 h-10 w-10 rounded-full bg-bg-primary border border-border shadow-md flex items-center justify-center text-text-primary hover:border-gold hover:text-gold transition-colors"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {staff.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              aria-label={`Go to ${staff[i].role}`}
+              className={`rounded-full transition-all duration-300 ${
+                i === idx ? "w-6 h-2 bg-gold" : "w-2 h-2 bg-border hover:bg-gold/50"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Careers CTA */}
+        <div className="mt-12 text-center">
+          <p className="text-text-secondary mb-4">Passionate about hospitality? We'd love to hear from you.</p>
+          <a
+            href="mailto:careers@dukkah.co.za"
+            className="inline-block border border-gold text-gold px-8 py-3 rounded-full text-sm font-semibold hover:bg-gold hover:text-bg-primary transition-colors duration-200"
+          >
+            View Open Positions
+          </a>
         </div>
       </div>
     </section>
