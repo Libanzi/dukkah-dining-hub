@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Gallery", href: "#gallery" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#footer" },
+  { label: "Blog", href: "/blog", route: true },
 ];
 
 export function Navigation() {
@@ -41,12 +42,21 @@ export function Navigation() {
         <ul className="hidden lg:flex items-center gap-7">
           {navLinks.map((l) => (
             <li key={l.label}>
-              <a
-                href={l.href}
-                className="text-sm font-medium text-text-secondary transition-colors hover:text-gold relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gold after:transition-all hover:after:w-full"
-              >
-                {l.label}
-              </a>
+              {l.route ? (
+                <Link
+                  to={l.href}
+                  className="text-sm font-medium text-text-secondary transition-colors hover:text-gold relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gold after:transition-all hover:after:w-full"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  href={l.href}
+                  className="text-sm font-medium text-text-secondary transition-colors hover:text-gold relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gold after:transition-all hover:after:w-full"
+                >
+                  {l.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -93,13 +103,23 @@ export function Navigation() {
           <ul className="flex flex-col items-center justify-center gap-6 px-6 pt-12">
             {navLinks.map((l) => (
               <li key={l.label}>
-                <a
-                  href={l.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-serif text-3xl text-text-primary hover:text-gold transition-colors"
-                >
-                  {l.label}
-                </a>
+                {l.route ? (
+                  <Link
+                    to={l.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-serif text-3xl text-text-primary hover:text-gold transition-colors"
+                  >
+                    {l.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={l.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-serif text-3xl text-text-primary hover:text-gold transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                )}
               </li>
             ))}
             <li className="mt-4">
