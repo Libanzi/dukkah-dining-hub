@@ -19,18 +19,17 @@ export interface MenuTab {
 const p = (name: string) => `/photos/${name}.webp`;
 const pj = (name: string) => `/photos/${name}.jpeg`;
 const pp = (name: string) => `/photos/${name}.png`;
+const u = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=80`;
 
 export const MENU: MenuTab[] = [
   {
     id: "alacarte",
     label: "À La Carte",
     items: [
-      // No ceviche photo available
-      { category: "STARTER", name: "Dukkah-Crusted Kingklip Ceviche", desc: "Citrus-cured kingklip, cucumber, coriander oil, crispy capers", price: "R165", diet: ["fish"] },
+      { category: "STARTER", name: "Dukkah-Crusted Kingklip Ceviche", desc: "Citrus-cured kingklip, cucumber, coriander oil, crispy capers", price: "R165", img: u("1535400671853-53b54a19f73f"), diet: ["fish"] },
       // fried croquette balls in cream — exact match
       { category: "STARTER", name: "Oxtail Croquettes", desc: "Slow-braised oxtail, chimichurri, peri-peri aioli", price: "R145", img: pj("new-food-croquettes") },
-      // No spring rolls photo
-      { category: "STARTER", name: "Cape Malay Bobotie Spring Rolls", desc: "Spiced mince, apricot chutney, cucumber ribbons", price: "R125" },
+      { category: "STARTER", name: "Cape Malay Bobotie Spring Rolls", desc: "Spiced mince, apricot chutney, cucumber ribbons", price: "R125", img: u("1563245372-f21724e3856d") },
       // king prawns in garlic butter sauce with lemon — perfect
       { category: "STARTER", name: "Peri-Peri Prawns", desc: "King prawns, garlic & herb butter, lemon, sourdough", price: "R175", img: pj("new-food-prawns-2"), diet: ["fish", "spicy"] },
       // elegant braised meat medallion with jus, top-down fine-dining plate
@@ -39,12 +38,10 @@ export const MENU: MenuTab[] = [
       { category: "MAIN", name: "Grilled Yellowfin Tuna", desc: "Peri-peri butter, sautéed broccolini, lemon", price: "R325", img: pj("new-food-fishcake"), diet: ["fish"] },
       // poultry with cream sauce poured tableside — duck breast presentation
       { category: "MAIN", name: "Pan-Seared Duck Breast", desc: "Orange & amarula reduction, creamy polenta, wilted greens", price: "R365", img: pj("new-food-sauce") },
-      // No bunny chow photo
-      { category: "MAIN", name: "Mushroom & Spinach Bunny Chow", desc: "Cape Malay spiced curry, quarter loaf", price: "R185", diet: ["vegetarian", "gluten-free"] },
+      { category: "MAIN", name: "Mushroom & Spinach Bunny Chow", desc: "Cape Malay spiced curry, quarter loaf", price: "R185", img: u("1585937421612-70a008356fbe"), diet: ["vegetarian", "gluten-free"] },
       // dukkah-crusted beef fillet with bone marrow, mash, broccolini
       { category: "MAIN", name: "Dukkah Wagyu Burger", desc: "Wagyu patty, aged gouda, caramelised onion jam, truffle aioli", price: "R285", img: pj("new-food-beef-2") },
-      // No linguine/pasta photo
-      { category: "MAIN", name: "Prawn & Calamari Linguine", desc: "King prawns, baby calamari, cherry tomato, white wine, garlic", price: "R295", diet: ["fish"] },
+      { category: "MAIN", name: "Prawn & Calamari Linguine", desc: "King prawns, baby calamari, cherry tomato, white wine, garlic", price: "R295", img: u("1563379926898-05f4575a45d8"), diet: ["fish"] },
     ],
   },
   {
@@ -56,12 +53,10 @@ export const MENU: MenuTab[] = [
       { category: "BRUNCH", name: "Dukkah Turkish Eggs", desc: "Poached eggs, whipped Greek yoghurt & feta, cumin-chilli butter, mint, naan", price: "R145", img: pj("new-food-brunch-2"), diet: ["vegetarian"] },
       // classic eggs benedict with hollandaise
       { category: "BRUNCH", name: "Smoked Salmon Benedict", desc: "Norwegian salmon, avo, poached eggs, hollandaise, capers, dill, sourdough", price: "R185", img: pj("new-food-benedict"), diet: ["fish"] },
-      // No second benedict photo
-      { category: "BRUNCH", name: "African Eggs Benedict", desc: "Bobotie-spiced lamb, poached eggs, turmeric hollandaise, rye", price: "R155" },
+      { category: "BRUNCH", name: "African Eggs Benedict", desc: "Bobotie-spiced lamb, poached eggs, turmeric hollandaise, rye", price: "R155", img: u("1525351484163-7529414344d8") },
       // baked egg in ramekin with avocado and toast — shakshuka
       { category: "BRUNCH", name: "Dukkah Shakshuka", desc: "Eggs poached in spiced tomato & pepper sauce, feta, herbs, flatbread", price: "R125", img: pj("new-food-brunch-1"), diet: ["vegetarian", "gluten-free"] },
-      // No granola bowl photo
-      { category: "BRUNCH", name: "Heritage Granola Bowl", desc: "House granola, Greek yoghurt, seasonal fruit, honey, toasted seeds", price: "R95", diet: ["vegetarian"] },
+      { category: "BRUNCH", name: "Heritage Granola Bowl", desc: "House granola, Greek yoghurt, seasonal fruit, honey, toasted seeds", price: "R95", img: u("1484723091739-30a097e8f929"), diet: ["vegetarian"] },
       // maki plate with soy sauce and ginger
       { category: "SUSHI", name: "Sushi Selection Platter", desc: "Chef's selection of nigiri, maki and sashimi, soy & wasabi", price: "R295", img: pj("new-sushi-2"), diet: ["fish"] },
       // hand holding a single maki/sashimi piece close-up
@@ -80,10 +75,8 @@ export const MENU: MenuTab[] = [
       { category: "SIGNATURE", name: "Durban Sling", desc: "Hendrick's gin, hibiscus syrup, ginger beer, lime", price: "R90", img: pj("new-cocktail-amber") },
       // dark red layered coupe — dark rum, spiced
       { category: "SIGNATURE", name: "The Dukkah Spice", desc: "Dark rum, cinnamon, honey, lime, soda", price: "R90", img: pj("new-cocktail-red") },
-      // No margarita photo
-      { category: "SIGNATURE", name: "Peri-Peri Margarita", desc: "Tequila, triple sec, lime, peri-peri syrup, chilli salt rim", price: "R95", diet: ["spicy"] },
-      // No espresso martini photo
-      { category: "SIGNATURE", name: "Amarula Espresso Martini", desc: "Vodka, amarula, fresh espresso, coffee liqueur", price: "R100" },
+      { category: "SIGNATURE", name: "Peri-Peri Margarita", desc: "Tequila, triple sec, lime, peri-peri syrup, chilli salt rim", price: "R95", img: u("1514362545857-3bc16c4c7d1b"), diet: ["spicy"] },
+      { category: "SIGNATURE", name: "Amarula Espresso Martini", desc: "Vodka, amarula, fresh espresso, coffee liqueur", price: "R100", img: u("1622483767028-3f66f32aef97") },
       // dark layered coupe with smoked orange slice — bourbon old fashioned
       { category: "SIGNATURE", name: "Rooibos Old Fashioned", desc: "Bourbon, rooibos syrup, orange bitters, smoked orange peel", price: "R95", img: pj("new-cocktail-dark") },
       // vibrant green coupe — hibiscus, lime, mint mocktail
@@ -104,8 +97,7 @@ export const MENU: MenuTab[] = [
       { category: "WHITE", name: "Durbanville Hills Sauvignon Blanc", desc: "Zesty lime, yellow fruits, vibrant acidity", price: "R200 / R60", img: pj("new-wine-service") },
       // Dukkah wine cellar lounge with curated bottle wall
       { category: "WHITE", name: "Ken Forrester Petit Chenin", desc: "Minerally, fruit & oak balanced", price: "R195 / R55", img: pp("new-wine-3") },
-      // No chardonnay-specific photo
-      { category: "WHITE", name: "Diemersdal Unwooded Chardonnay", desc: "Spicy aromas, fresh fruit", price: "R235 / R65" },
+      { category: "WHITE", name: "Diemersdal Unwooded Chardonnay", desc: "Spicy aromas, fresh fruit", price: "R235 / R65", img: u("1510812431401-41d2bd2722f3") },
       // champagne flute at brunch table — prosecco celebration
       { category: "BUBBLY", name: "Valdo Garda Prosecco", desc: "Floral, pear, delicate bubbles", price: "R325 / R90", img: pp("new-wine-2") },
     ],
@@ -116,29 +108,25 @@ export const MENU: MenuTab[] = [
     items: [
       // sorbet with caramel drizzle and edible flowers — caramel dessert
       { category: "DESSERT", name: "Malva Pudding", desc: "Traditional South African malva, amarula ice cream, caramel", price: "R95", img: pj("new-food-dessert-2") },
-      // No waffle photo
-      { category: "DESSERT", name: "Malted Belgian Waffle", desc: "Amarula cream, dark chocolate shavings, caramelised banana", price: "R115" },
+      { category: "DESSERT", name: "Malted Belgian Waffle", desc: "Amarula cream, dark chocolate shavings, caramelised banana", price: "R115", img: u("1562376552-0d160a2f238d") },
       // elegant dark plate with chocolate marquise/parfait, sorbet, edible flowers
       { category: "DESSERT", name: "Dark Chocolate Marquise", desc: "Salted caramel, cocoa tuile, gold leaf", price: "R110", img: pj("new-food-dessert-1") },
       // panna cotta in glass with fresh mixed fruit and shortbread biscuits
       { category: "DESSERT", name: "Mango Panna Cotta", desc: "Coconut milk panna cotta, mango coulis, toasted coconut", price: "R90", img: pj("new-food-dessert-3"), diet: ["gluten-free"] },
-      // No cheese board photo
-      { category: "DESSERT", name: "SA Cheese Board", desc: "Three local cheeses, quince paste, crackers, nuts, dried fruit", price: "R145" },
-      // No affogato photo
-      { category: "DESSERT", name: "Affogato", desc: "Double espresso poured over vanilla ice cream", price: "R65" },
+      { category: "DESSERT", name: "SA Cheese Board", desc: "Three local cheeses, quince paste, crackers, nuts, dried fruit", price: "R145", img: u("1505575967455-40e256f73a6e") },
+      { category: "DESSERT", name: "Affogato", desc: "Double espresso poured over vanilla ice cream", price: "R65", img: u("1534308983496-4fabb1a015ee") },
     ],
   },
   {
     id: "coffee",
     label: "Coffee & Drinks",
     items: [
-      // No in-house coffee/drinks photos
-      { category: "COFFEE", name: "Dukkah Cardamom Cappuccino", desc: "Double shot, steamed milk, cardamom-spiced foam", price: "R49" },
-      { category: "COFFEE", name: "Mega Cappuccino", desc: "220ml double shot", price: "R38" },
-      { category: "COFFEE", name: "Iced Coffee", desc: "Cold brew over ice, milk of choice", price: "R65" },
-      { category: "TEA", name: "Rooibos Latté", desc: "Local rooibos, steamed milk, honey", price: "R45" },
-      { category: "JUICE", name: "Morning Detox", desc: "Carrot, apple, ginger, beetroot, celery", price: "R75", diet: ["vegetarian", "gluten-free"] },
-      { category: "SHAKE", name: "Salted Caramel Honeycomb", desc: "Thick milkshake, caramel sauce, honeycomb crunch", price: "R75" },
+      { category: "COFFEE", name: "Dukkah Cardamom Cappuccino", desc: "Double shot, steamed milk, cardamom-spiced foam", price: "R49", img: u("1509042239860-f550ce710b93") },
+      { category: "COFFEE", name: "Mega Cappuccino", desc: "220ml double shot", price: "R38", img: u("1461023058943-07fcbe16d735") },
+      { category: "COFFEE", name: "Iced Coffee", desc: "Cold brew over ice, milk of choice", price: "R65", img: u("1558618666-fcd25c85cd64") },
+      { category: "TEA", name: "Rooibos Latté", desc: "Local rooibos, steamed milk, honey", price: "R45", img: u("1544787219-7f47ccb76574") },
+      { category: "JUICE", name: "Morning Detox", desc: "Carrot, apple, ginger, beetroot, celery", price: "R75", img: u("1600271886742-f049cd451bba"), diet: ["vegetarian", "gluten-free"] },
+      { category: "SHAKE", name: "Salted Caramel Honeycomb", desc: "Thick milkshake, caramel sauce, honeycomb crunch", price: "R75", img: u("1572490122747-3e9197926a3b") },
     ],
   },
   {
