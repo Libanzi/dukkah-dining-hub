@@ -13,8 +13,6 @@ import { PrivateDining } from "@/components/PrivateDining";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import { ChatbotWidget } from "@/components/ChatbotWidget";
-import { CartProvider } from "@/components/cart/CartContext";
-import { CartDrawer } from "@/components/cart/CartDrawer";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -22,26 +20,23 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <CartProvider>
-      <div className="min-h-screen bg-bg-primary text-text-primary">
-        <Navigation />
-        <main>
-          <HeroCarousel />
-          <ExperienceCards />
-          <AboutSection />
-          <OrderOnline />
-          <Reservations />
-          <EventsSection />
-          <GiftCards />
-          <Testimonials />
-          <StaffSection />
-          <PrivateDining />
-          <CTASection />
-        </main>
-        <Footer />
-        <ChatbotWidget />
-        <CartDrawer />
-      </div>
-    </CartProvider>
+    <div className="min-h-screen bg-bg-primary text-text-primary">
+      <Navigation />
+      <main>
+        <HeroCarousel />
+        <ExperienceCards />
+        <AboutSection />
+        <OrderOnline />
+        <Reservations />
+        <EventsSection />
+        <GiftCards />
+        <Testimonials />
+        <StaffSection />
+        <PrivateDining />
+        <CTASection />
+      </main>
+      <Footer />
+      <ChatbotWidget />
+    </div>
   );
 }
