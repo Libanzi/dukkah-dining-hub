@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, MapPin, HelpCircle } from "lucide-react";
 
 type TourMode = "user" | "admin";
@@ -260,8 +260,21 @@ export function TourButton({ mode = "user", label, className }: TourButtonProps)
   );
 }
 
+const TOUR_SEEN_KEY = "dukkah_tour_seen";
+
 export function TourFab({ mode = "user" }: { mode?: TourMode }) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem(TOUR_SEEN_KEY)) {
+      setOpen(true);
+    }
+  }, []);
+
+  const handleClose = useCallback(() => {
+    localStorage.setItem(TOUR_SEEN_KEY, "1");
+    setOpen(false);
+  }, []);
 
   return (
     <>
@@ -273,7 +286,7 @@ export function TourFab({ mode = "user" }: { mode?: TourMode }) {
       >
         <HelpCircle className="h-5 w-5" />
       </button>
-      {open && <TourOverlay mode={mode} onClose={() => setOpen(false)} />}
+      {open && <TourOverlay mode={mode} onClose={handleClose} />}
     </>
   );
 }
